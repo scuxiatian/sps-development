@@ -1,0 +1,6 @@
+{"level":"\u001b[34minfo\u001b[0m","time":"[SPS-DEV]2021/01/09 - 13:24:53","caller":"E:/goProject/sps-template/sps-template-server/initialize/gorm.go:27","message":"register table success"}
+{"level":"\u001b[34minfo\u001b[0m","time":"[SPS-DEV]2021/01/09 - 13:24:54","caller":"E:/goProject/sps-template/sps-template-server/initialize/gorm.go:31","message":"initialize table success"}
+{"level":"\u001b[34minfo\u001b[0m","time":"[SPS-DEV]2021/01/09 - 13:24:54","caller":"E:/goProject/sps-template/sps-template-server/initialize/router.go:14","message":"use middleware logger"}
+{"level":"\u001b[34minfo\u001b[0m","time":"[SPS-DEV]2021/01/09 - 13:24:54","caller":"E:/goProject/sps-template/sps-template-server/initialize/router.go:17","message":"register swagger handler"}
+{"level":"\u001b[34minfo\u001b[0m","time":"[SPS-DEV]2021/01/09 - 13:24:54","caller":"E:/goProject/sps-template/sps-template-server/initialize/router.go:26","message":"router register success"}
+{"level":"\u001b[34minfo\u001b[0m","time":"[SPS-DEV]2021/01/09 - 13:24:54","caller":"E:/goProject/sps-template/sps-template-server/core/server.go:25","message":"server run success on ","address":":8888"}

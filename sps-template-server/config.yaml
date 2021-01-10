@@ -1,0 +1,42 @@
+# 系统配置
+system:
+  env: 'public'  # Change to "develop" to skip authentication for development mode
+  addr: 8888
+  oss-type: 'local'
+  use-multipoint: false
+
+# mysql数据库配置信息
+mysql:
+  path: '127.0.0.1:3306'
+  config: 'charset=utf8mb4&parseTime=True&loc=Local'
+  db-name: 'sps_dev'
+  username: 'root'
+  password: 'dlt7641566'
+  max-idle-conns: 10
+  max-opten-conns: 100
+  log-mode: false
+  log-zap: ''
+
+# zap日志配置信息
+zap:
+  level: 'info'
+  format: 'console'
+  prefix: '[SPS-DEV]'
+  director: 'log'
+  link-name: 'latest_log'
+  show-line: true
+  encode-level: 'LowercaseColorLevelEncoder'
+  stacktrace-key: 'stacktrace'
+  log-in-console: true
+
+# jwt 配置信息
+jwt:
+  signing-key: 'spsDev'
+  expires-time: 604800
+  buffer-time: 86400
+
+# 登录验证码 配置信息
+captcha:
+  key-long: 6
+  img-width: 240
+  img-height: 80

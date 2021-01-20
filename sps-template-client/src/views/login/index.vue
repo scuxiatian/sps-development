@@ -52,7 +52,7 @@
           </div>
         </a-form-item>
         <a-form-item>
-          <a-button type="primary" shape="round" block @click="submitForm">
+          <a-button type="primary" shape="round" :loading="isLoading" block @click="submitForm">
             <template #icon><LoginOutlined /></template>登录
           </a-button>
         </a-form-item>
@@ -65,18 +65,21 @@
 import { reactive, ref, toRefs, getCurrentInstance } from 'vue'
 import { captcha } from '@/api/user'
 import { useStore, mapActions } from 'vuex'
+import { useRoute, useRouter } from 'vue-router'
 
 export default {
   setup () {
     const { ctx } = getCurrentInstance()
     const store = useStore()
-    const actions = mapActions('user', ['login'])
-    const login = actions.login.bind({ $store: store })
+    const route = useRoute()
+    const router = useRouter()
+    const actions = mapActions('user', ['Login'])
+    const login = actions.Login.bind({ $store: store })
 
     const state = reactive({
       loginModel: {
         username: 'admin',
-        password: '123',
+        password: '123456',
         captcha: '',
         captchaId: ''
       },
@@ -89,7 +92,8 @@ export default {
           { required: true, message: '请输入验证码', trigger: 'blur' },
           { len: 6, message: '请输入6位验证码', trigger: 'blur' }
         ]
-      }
+      },
+      isLoading: false
     })
 
     // 更新验证码
@@ -102,9 +106,19 @@ export default {
     // 提交登录表单
     const submitForm = async () => {
       try {
+        state.isLoading = true
         await loginForm.value.validate()
+        // 提交表单的同时刷新验证码
+        getCaptcha()
         await login(state.loginModel)
+        const redirect = route.query.redirect
+        if (redirect) {
+          router.push({ path: redirect })
+        } else {
+          router.push({ path: '/layout/dashboard' })
+        }
       } catch (err) {
+        state.isLoading = false
         if (err.errorFields && err.errorFields.length > 0) {
           ctx.$error(err.errorFields[0].errors[0])
         }

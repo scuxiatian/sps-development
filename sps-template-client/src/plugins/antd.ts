@@ -5,7 +5,13 @@ import {
   Row,
   Col,
   Button,
-  Image
+  Image,
+  Layout,
+  Menu,
+  Breadcrumb,
+  Avatar,
+  Dropdown,
+  Tabs
 } from 'ant-design-vue'
 // import 'ant-design-vue/dist/antd.css'
 
@@ -16,7 +22,13 @@ const components = [
   Row,
   Col,
   Button,
-  Image
+  Image,
+  Layout,
+  Menu,
+  Breadcrumb,
+  Avatar,
+  Dropdown,
+  Tabs
 ]
 
 export default (app: any) => {

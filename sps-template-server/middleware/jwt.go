@@ -9,6 +9,8 @@ import (
 	"sps-template-server/model/request"
 	"sps-template-server/model/response"
 	"sps-template-server/service"
+	"strconv"
+	"time"
 )
 
 func JWTAuth() gin.HandlerFunc  {
@@ -16,6 +18,11 @@ func JWTAuth() gin.HandlerFunc  {
 		token := c.Request.Header.Get("x-token")
 		if token == "" {
 			response.FailWithDetailed(gin.H{"reload": true}, "未登录访问", c)
+			c.Abort()
+			return
+		}
+		if service.IsBlacklist(token) {
+			response.FailWithDetailed(gin.H{"reload": true}, "您的帐户异地登陆或令牌失效", c)
 			c.Abort()
 			return
 		}
@@ -36,6 +43,15 @@ func JWTAuth() gin.HandlerFunc  {
 			response.FailWithDetailed(gin.H{"reload": true}, err.Error(), c)
 			c.Abort()
 		}
+		if claims.ExpiresAt - time.Now().Unix() < claims.BufferTime {
+			claims.ExpiresAt = time.Now().Unix() + 60 * 60 * 24 * 7
+			newToken, _ := j.CreateToken(*claims)
+			newClaims, _ := j.ParseToken(newToken)
+			c.Header("new-token", newToken)
+			c.Header("new-expires-at", strconv.FormatInt(newClaims.ExpiresAt, 10))
+		}
+		c.Set("claims", claims)
+		c.Next()
 	}
 }
 

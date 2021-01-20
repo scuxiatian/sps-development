@@ -3,7 +3,6 @@ package v1
 import (
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
-	uuid "github.com/satori/go.uuid"
 	"go.uber.org/zap"
 	"sps-template-server/global"
 	"sps-template-server/middleware"
@@ -40,7 +39,7 @@ func Login(c *gin.Context)  {
 func tokenNext(c *gin.Context, user model.SysUser)  {
 	j := &middleware.JWT{SigningKey: []byte(global.SdConfig.JWT.SigningKey)}
 	claims := request.CustomClaims{
-		UUID:           uuid.UUID{},
+		UUID:           user.UUID,
 		ID:             user.ID,
 		Username:       user.Username,
 		NickName:       user.NickName,
@@ -90,5 +89,15 @@ func Register(c *gin.Context)  {
 		response.FailWithDetailed(response.SysUserResponse{User: userReturn}, "注册失败", c)
 	} else {
 		response.OkWithDetailed(response.SysUserResponse{User: userReturn}, "注册成功", c)
+	}
+}
+
+func getUserAuthorityId(c *gin.Context) string {
+	if claims, exists := c.Get("claims"); !exists {
+		global.SdLog.Error("从Gin的Context中获取从jwt解析出来的用户UUID失败, 请检查路由是否使用jwt中间件")
+		return ""
+	} else {
+		waitUse := claims.(*request.CustomClaims)
+		return waitUse.AuthorityId
 	}
 }

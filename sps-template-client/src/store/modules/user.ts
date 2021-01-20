@@ -1,10 +1,14 @@
+import { jsonInBlacklist } from '@/api/jwt'
 import { login, UserLogin } from '@/api/user'
+import router from '@/router'
+import { ResponseData } from '@/utils/request'
+// import router from '@/router'
 
 interface UserInfo {
-  uuid: string;
-  nickName: string;
-  headerImg: string;
-  authority: string;
+  uuid?: string;
+  nickName?: string;
+  headerImg?: string;
+  authority?: string;
 }
 
 interface UserState {
@@ -23,21 +27,33 @@ const state: UserState = {
 }
 
 const mutations = {
-  setUserInfo (state: UserState, userInfo: UserInfo) {
+  SET_USER_INFO (state: UserState, userInfo: UserInfo) {
     state.userInfo = userInfo
   },
-  setToken (state: UserState, token: string) {
+  SET_TOKEN (state: UserState, token: string) {
     state.token = token
+  },
+  LOGOUT (state: UserState) {
+    state.userInfo = {}
+    state.token = ''
+    router.push({ name: 'login', replace: true })
+    sessionStorage.clear()
+    window.location.reload()
   }
 }
 
 const actions = {
-  async login ({ commit }: any, loginInfo: UserLogin) {
-    console.log('123')
-    const res: any = await login(loginInfo)
+  async Login ({ commit }: any, loginInfo: UserLogin) {
+    const res: ResponseData = await login(loginInfo)
     if (res.code === 0) {
-      commit('setUserInfo', res.data.user)
-      commit('setToken', res.data.token)
+      commit('SET_USER_INFO', res.data.user)
+      commit('SET_TOKEN', res.data.token)
+    }
+  },
+  async Logout ({ commit }: any) {
+    const res: ResponseData = await jsonInBlacklist()
+    if (res.code === 0) {
+      commit('LOGOUT')
     }
   }
 }

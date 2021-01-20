@@ -7,6 +7,7 @@ import (
 	"gorm.io/gorm/logger"
 	"os"
 	"sps-template-server/global"
+	"sps-template-server/initialize/datas"
 	"sps-template-server/model"
 )
 
@@ -19,7 +20,8 @@ func MysqlTables(db *gorm.DB)  {
 		model.SysUser{},
 		model.SysAuthority{},
 		model.SysBaseMenu{},
-		model.SysBaseMenuParameter{})
+		model.SysBaseMenuParameter{},
+		model.JwtBlacklist{})
 	if err != nil {
 		global.SdLog.Error("register table failed", zap.Any("err", err))
 		os.Exit(0)
@@ -40,7 +42,7 @@ func initMysqlTables(db *gorm.DB)  {
 	//datas.InitSysAuthority(db)
 	//datas.InitSysBaseMenus(db)
 	//datas.InitAuthorityMenu(db)
-	//datas.InitSysAuthorityMenus(db)
+	datas.InitSysAuthorityMenus(db)
 }
 
 //@function: GormMysql

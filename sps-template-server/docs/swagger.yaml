@@ -1,5 +1,7 @@
 basePath: /
 definitions:
+  request.Empty:
+    type: object
   request.Login:
     properties:
       captcha:
@@ -13,6 +15,8 @@ definitions:
     type: object
   request.Register:
     properties:
+      authorityId:
+        type: string
       headerImg:
         type: string
       nickName:
@@ -63,6 +67,43 @@ paths:
       summary: 用户登录
       tags:
       - Base
+  /jwt/jsonInBlacklist:
+    post:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"拉黑成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: jwt加入黑名单
+      tags:
+      - Jwt
+  /menu/getMenu:
+    post:
+      parameters:
+      - description: 空
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.Empty'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 获取用户动态路由
+      tags:
+      - AuthorityMenu
   /user/register:
     post:
       parameters:

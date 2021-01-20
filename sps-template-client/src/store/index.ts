@@ -1,6 +1,7 @@
 import { createStore } from 'vuex'
 import VuexPersistence from 'vuex-persist'
 import user from './modules/user'
+import router from './modules/router'
 
 const vuexLocal = new VuexPersistence({
   storage: window.localStorage,
@@ -9,7 +10,8 @@ const vuexLocal = new VuexPersistence({
 
 export default createStore({
   modules: {
-    user
+    user,
+    router
   },
   plugins: [vuexLocal.plugin]
 })

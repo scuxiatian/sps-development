@@ -44,7 +44,7 @@ func Login(u *model.SysUser) (err error, userInter *model.SysUser)  {
 
 func FindUserByUUid(uuid string) (err error, user *model.SysUser) {
 	var u model.SysUser
-	if err := global.SdDB.Where("uuid = ?", uuid).First(&user).Error; err != nil {
+	if err := global.SdDB.Where("`uuid` = ?", uuid).First(&u).Error; err != nil {
 		return errors.New("用户不存在"), &u
 	}
 	return nil, &u

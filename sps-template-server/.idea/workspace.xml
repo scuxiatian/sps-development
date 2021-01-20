@@ -2,11 +2,40 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e0e36172-8750-4ed8-a718-8f386fb0a007" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/v1/sys_jwt_blacklist.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/v1/sys_menu.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/request/common.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/request/sys_menu.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/response/sys_menu.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/router/sys_jwt.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/router/sys_menu.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sps-template-client/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/.eslintrc.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sps-template-client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sps-template-client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/plugins/antd-icon.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/plugins/antd-icon.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/plugins/antd.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/plugins/antd.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/router/permission.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/router/permission.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/store/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/store/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/store/modules/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/store/modules/router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/store/modules/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/store/modules/user.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/utils/request.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/utils/request.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/views/layout/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/views/layout/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/views/login/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/views/login/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/v1/sys_user.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/sys_user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs.go" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docs.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/swagger.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/swagger.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/swagger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docs/swagger.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/initialize/datas/authority_menus.go" beforeDir="false" afterPath="$PROJECT_DIR$/initialize/datas/authority_menus.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/initialize/datas/menus.go" beforeDir="false" afterPath="$PROJECT_DIR$/initialize/datas/menus.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/initialize/gorm.go" beforeDir="false" afterPath="$PROJECT_DIR$/initialize/gorm.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/initialize/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/initialize/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/middleware/jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/jwt.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/jwt_black_list.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/jwt_black_list.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/sys_user.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/sys_user.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -80,7 +109,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

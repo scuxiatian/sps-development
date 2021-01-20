@@ -81,6 +81,68 @@ var doc = `{
                 }
             }
         },
+        "/jwt/jsonInBlacklist": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Jwt"
+                ],
+                "summary": "jwt加入黑名单",
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"拉黑成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/menu/getMenu": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "AuthorityMenu"
+                ],
+                "summary": "获取用户动态路由",
+                "parameters": [
+                    {
+                        "description": "空",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.Empty"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"获取成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/user/register": {
             "post": {
                 "produces": [
@@ -113,6 +175,9 @@ var doc = `{
         }
     },
     "definitions": {
+        "request.Empty": {
+            "type": "object"
+        },
         "request.Login": {
             "type": "object",
             "properties": {
@@ -133,6 +198,9 @@ var doc = `{
         "request.Register": {
             "type": "object",
             "properties": {
+                "authorityId": {
+                    "type": "string"
+                },
                 "headerImg": {
                     "type": "string"
                 },

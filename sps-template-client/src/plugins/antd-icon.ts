@@ -5,7 +5,16 @@ import {
   EyeOutlined,
   EyeInvisibleOutlined,
   MailOutlined,
-  LoginOutlined
+  LoginOutlined,
+  HomeOutlined,
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  DownloadOutlined,
+  DownOutlined,
+  LogoutOutlined,
+  SettingOutlined,
+  TeamOutlined,
+  MenuOutlined
 } from '@ant-design/icons-vue'
 
 const iconComponents = [
@@ -15,7 +24,16 @@ const iconComponents = [
   EyeOutlined,
   EyeInvisibleOutlined,
   MailOutlined,
-  LoginOutlined
+  LoginOutlined,
+  HomeOutlined,
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  DownloadOutlined,
+  DownOutlined,
+  LogoutOutlined,
+  SettingOutlined,
+  TeamOutlined,
+  MenuOutlined
 ]
 
 const antdIcon = {

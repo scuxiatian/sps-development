@@ -6,6 +6,7 @@ import (
 	"github.com/swaggo/gin-swagger/swaggerFiles"
 	_ "sps-template-server/docs"
 	"sps-template-server/global"
+	"sps-template-server/middleware"
 	"sps-template-server/router"
 )
 
@@ -20,8 +21,11 @@ func Routers() *gin.Engine {
 		router.InitBaseRouter(PublicGroup)
 	}
 	PrivateGroup := Router.Group("")
+	PrivateGroup.Use(middleware.JWTAuth())
 	{
 		router.InitUserRouter(PrivateGroup)
+		router.InitMenuRouter(PrivateGroup)
+		router.InitJwtRouter(PrivateGroup)
 	}
 	global.SdLog.Info("router register success")
 	return Router

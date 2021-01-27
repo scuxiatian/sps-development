@@ -7,7 +7,6 @@ import (
 	"gorm.io/gorm/logger"
 	"os"
 	"sps-template-server/global"
-	"sps-template-server/initialize/datas"
 	"sps-template-server/model"
 )
 
@@ -42,7 +41,7 @@ func initMysqlTables(db *gorm.DB)  {
 	//datas.InitSysAuthority(db)
 	//datas.InitSysBaseMenus(db)
 	//datas.InitAuthorityMenu(db)
-	datas.InitSysAuthorityMenus(db)
+	//datas.InitSysAuthorityMenus(db)
 }
 
 //@function: GormMysql

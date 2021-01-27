@@ -14,7 +14,11 @@ import {
   LogoutOutlined,
   SettingOutlined,
   TeamOutlined,
-  MenuOutlined
+  MenuOutlined,
+  PlusCircleOutlined,
+  PlusOutlined,
+  EditOutlined,
+  DeleteOutlined
 } from '@ant-design/icons-vue'
 
 const iconComponents = [
@@ -33,7 +37,11 @@ const iconComponents = [
   LogoutOutlined,
   SettingOutlined,
   TeamOutlined,
-  MenuOutlined
+  MenuOutlined,
+  PlusCircleOutlined,
+  PlusOutlined,
+  EditOutlined,
+  DeleteOutlined
 ]
 
 const antdIcon = {

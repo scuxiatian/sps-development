@@ -108,6 +108,120 @@ var doc = `{
                 }
             }
         },
+        "/menu/addBaseMenu": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Menu"
+                ],
+                "summary": "新增菜单",
+                "parameters": [
+                    {
+                        "description": "路由path, 父菜单ID, 路由name, 对应前端文件路径, 排序标记",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.SysBaseMenu"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"添加成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/menu/deleteBaseMenu": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Menu"
+                ],
+                "summary": "删除菜单",
+                "parameters": [
+                    {
+                        "description": "菜单id",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.GetById"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"删除成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/menu/getBaseMenuById": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Menu"
+                ],
+                "summary": "根据id获取菜单",
+                "parameters": [
+                    {
+                        "description": "菜单id",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.GetById"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"获取成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/menu/getMenu": {
             "post": {
                 "security": [
@@ -136,6 +250,82 @@ var doc = `{
                 "responses": {
                     "200": {
                         "description": "{\"success\":true,\"data\":{},\"msg\":\"获取成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/menu/getMenuList": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Menu"
+                ],
+                "summary": "分页获取基础menu列表",
+                "parameters": [
+                    {
+                        "description": "页码, 每页大小",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.PageInfo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"获取成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/menu/updateBaseMenu": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Menu"
+                ],
+                "summary": "更新菜单",
+                "parameters": [
+                    {
+                        "description": "路由path, 父菜单ID, 路由name, 对应前端文件路径, 排序标记",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.SysBaseMenu"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"更新成功\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -175,8 +365,145 @@ var doc = `{
         }
     },
     "definitions": {
+        "model.SysAuthority": {
+            "type": "object",
+            "properties": {
+                "authorityId": {
+                    "type": "string"
+                },
+                "authorityName": {
+                    "type": "string"
+                },
+                "children": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.SysAuthority"
+                    }
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "dataAuthorityId": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.SysAuthority"
+                    }
+                },
+                "deletedAt": {
+                    "type": "string"
+                },
+                "menus": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.SysBaseMenu"
+                    }
+                },
+                "parentId": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.SysBaseMenu": {
+            "type": "object",
+            "properties": {
+                "authoritys": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.SysAuthority"
+                    }
+                },
+                "children": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.SysBaseMenu"
+                    }
+                },
+                "component": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "defaultMenu": {
+                    "type": "boolean"
+                },
+                "hidden": {
+                    "type": "boolean"
+                },
+                "icon": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "keepAlive": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "parameters": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.SysBaseMenuParameter"
+                    }
+                },
+                "parentId": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "sort": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.SysBaseMenuParameter": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "sysBaseMenuID": {
+                    "type": "integer"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
         "request.Empty": {
             "type": "object"
+        },
+        "request.GetById": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number"
+                }
+            }
         },
         "request.Login": {
             "type": "object",
@@ -192,6 +519,17 @@ var doc = `{
                 },
                 "username": {
                     "type": "string"
+                }
+            }
+        },
+        "request.PageInfo": {
+            "type": "object",
+            "properties": {
+                "page": {
+                    "type": "integer"
+                },
+                "pageSize": {
+                    "type": "integer"
                 }
             }
         },

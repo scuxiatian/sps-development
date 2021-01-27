@@ -1,7 +1,13 @@
 import {
+  ConfigProvider,
   Card,
   Form,
   Input,
+  InputNumber,
+  Radio,
+  Checkbox,
+  Select,
+  TreeSelect,
   Row,
   Col,
   Button,
@@ -11,14 +17,23 @@ import {
   Breadcrumb,
   Avatar,
   Dropdown,
-  Tabs
+  Tabs,
+  Table,
+  Modal,
+  Popconfirm
 } from 'ant-design-vue'
 // import 'ant-design-vue/dist/antd.css'
 
 const components = [
+  ConfigProvider,
   Card,
   Form,
   Input,
+  InputNumber,
+  Radio,
+  Checkbox,
+  Select,
+  TreeSelect,
   Row,
   Col,
   Button,
@@ -28,7 +43,10 @@ const components = [
   Breadcrumb,
   Avatar,
   Dropdown,
-  Tabs
+  Tabs,
+  Table,
+  Modal,
+  Popconfirm
 ]
 
 export default (app: any) => {

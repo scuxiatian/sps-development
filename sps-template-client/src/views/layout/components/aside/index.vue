@@ -1,6 +1,8 @@
 <template>
   <div class="logo"></div>
   <a-menu
+    v-model:selectedKeys="selectedKeys"
+    v-model:openKeys="openKeys"
     mode="inline"
     theme="dark"
     @click="handleMenuClick">
@@ -12,9 +14,9 @@
 </template>
 
 <script>
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter, onBeforeRouteUpdate } from 'vue-router'
 import { useStore, mapGetters } from 'vuex'
-import { computed } from 'vue'
+import { reactive, toRefs, computed } from 'vue'
 import MenuItem from './menuItem'
 
 export default {
@@ -23,17 +25,35 @@ export default {
     MenuItem
   },
   setup () {
+    const route = useRoute()
     const router = useRouter()
     const store = useStore()
     const getters = mapGetters('router', ['asyncRouters'])
     const asyncRouters = computed(getters.asyncRouters.bind({ $store: store }))
+    const state = reactive({
+      openKeys: []
+    })
 
     const handleMenuClick = ({ key }) => {
       router.push({ name: key })
     }
 
+    const selectedKeys = computed(() => [route.name])
+
+    onBeforeRouteUpdate((to, _, next) => {
+      const paths = to.fullPath.split('/')
+      if (paths.length < 4) {
+        state.openKeys = []
+        return next()
+      }
+      state.openKeys = paths.slice(2, -1)
+      next()
+    })
+
     return {
+      ...toRefs(state),
       asyncRouters,
+      selectedKeys,
       handleMenuClick
     }
   }

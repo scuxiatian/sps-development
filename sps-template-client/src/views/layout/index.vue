@@ -15,8 +15,13 @@
           <History />
         </a-layout-header>
         <!-- 页面主区域 -->
-        <a-layout-content>
-          <router-view />
+        <a-layout-content class="main-content">
+          <router-view v-if="keepAlive" v-slot="{ Component }">
+            <keep-alive>
+              <component :is="Component"></component>
+            </keep-alive>
+          </router-view>
+          <router-view v-if="!keepAlive" />
         </a-layout-content>
       </a-layout>
     </a-layout>
@@ -27,7 +32,8 @@
 import Aside from './components/aside'
 import Header from './components/header'
 import History from './components/history'
-import { reactive, toRefs } from 'vue'
+import { reactive, toRefs, computed } from 'vue'
+import { useRoute } from 'vue-router'
 
 export default {
   name: 'Layout',
@@ -37,12 +43,16 @@ export default {
     History
   },
   setup () {
+    const route = useRoute()
     const state = reactive({
       collapsed: false
     })
 
+    const keepAlive = computed(() => route.meta.keepAlive)
+
     return {
-      ...toRefs(state)
+      ...toRefs(state),
+      keepAlive
     }
   }
 }
@@ -52,15 +62,22 @@ export default {
 .layout-container {
   height: 100vh;
   .layout-header {
-    background: #fff;
+    background: @white-bg;
     padding: 0;
+    height: 60px;
     display: flex;
     justify-content: space-between;
   }
   .history-container {
-    background: #fff;
+    background: @white-bg;
     padding: 0 20px 0 5px;
     height: 40px;
+  }
+  .main-content {
+    height: calc(100vh - 130px);
+    overflow: auto;
+    margin: 15px;
+    background: @white-bg;
   }
 }
 </style>

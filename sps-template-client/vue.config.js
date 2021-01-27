@@ -10,5 +10,15 @@ module.exports = {
         }
       }
     }
+  },
+  css: {
+    loaderOptions: {
+      less: {
+        globalVars: {
+          primary: '#1890ff',
+          'white-bg': '#fff'
+        }
+      }
+    }
   }
 }

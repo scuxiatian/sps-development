@@ -61,15 +61,16 @@
   </div>
 </template>
 
-<script>
-import { reactive, ref, toRefs, getCurrentInstance } from 'vue'
+<script lang="ts">
+import { reactive, ref, unref, toRefs, getCurrentInstance } from 'vue'
 import { captcha } from '@/api/user'
 import { useStore, mapActions } from 'vuex'
 import { useRoute, useRouter } from 'vue-router'
 
 export default {
   setup () {
-    const { ctx } = getCurrentInstance()
+    const instance: any = getCurrentInstance()
+    const ctx = instance.ctx
     const store = useStore()
     const route = useRoute()
     const router = useRouter()
@@ -102,16 +103,17 @@ export default {
       state.loginModel.captchaId = res.data.captchaId
       state.captchaSrc = res.data.picPath
     }
-    const loginForm = ref(null)
+    const loginForm = ref<any>(null)
     // 提交登录表单
     const submitForm = async () => {
+      const form = unref(loginForm)
       try {
         state.isLoading = true
-        await loginForm.value.validate()
+        await form.validate()
         // 提交表单的同时刷新验证码
         getCaptcha()
         await login(state.loginModel)
-        const redirect = route.query.redirect
+        const redirect: any = route.query.redirect
         if (redirect) {
           router.push({ path: redirect })
         } else {

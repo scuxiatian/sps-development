@@ -31,16 +31,16 @@ export default {
     const getters = mapGetters('router', ['asyncRouters'])
     const asyncRouters = computed(getters.asyncRouters.bind({ $store: store }))
     const state = reactive({
-      openKeys: []
+      openKeys: [],
+      selectedKeys: [route.name]
     })
 
     const handleMenuClick = ({ key }) => {
       router.push({ name: key })
     }
 
-    const selectedKeys = computed(() => [route.name])
-
     onBeforeRouteUpdate((to, _, next) => {
+      state.selectedKeys = [to.name]
       const paths = to.fullPath.split('/')
       if (paths.length < 4) {
         state.openKeys = []
@@ -53,7 +53,7 @@ export default {
     return {
       ...toRefs(state),
       asyncRouters,
-      selectedKeys,
+      // selectedKeys,
       handleMenuClick
     }
   }

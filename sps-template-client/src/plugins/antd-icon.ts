@@ -18,10 +18,14 @@ import {
   PlusCircleOutlined,
   PlusOutlined,
   EditOutlined,
-  DeleteOutlined
+  DeleteOutlined,
+  CopyOutlined,
+  SaveOutlined,
+  LaptopOutlined,
+  SearchOutlined
 } from '@ant-design/icons-vue'
 
-const iconComponents = [
+export const iconComponents = [
   CodeSandboxCircleFilled,
   UserOutlined,
   LockOutlined,
@@ -41,7 +45,11 @@ const iconComponents = [
   PlusCircleOutlined,
   PlusOutlined,
   EditOutlined,
-  DeleteOutlined
+  DeleteOutlined,
+  CopyOutlined,
+  SaveOutlined,
+  LaptopOutlined,
+  SearchOutlined
 ]
 
 const antdIcon = {

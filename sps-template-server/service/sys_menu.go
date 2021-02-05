@@ -3,6 +3,7 @@ package service
 import (
 	"sps-template-server/global"
 	"sps-template-server/model"
+	"sps-template-server/model/request"
 )
 
 //@function: getMenuTreeMap
@@ -44,5 +45,28 @@ func GetMenuTree(authorityId string) (err error, menus []model.SysMenu)  {
 	for i := 0; i < len(menus); i++ {
 		err = getChildrenList(&menus[i], menuTree)
 	}
+	return err, menus
+}
+
+//@function: AddMenuAuthority
+//@description: 为角色增加menu树
+//@param: menus []model.SysBaseMenu, authorityId string
+//@return: err error
+
+func AddMenuAuthority(menus []model.SysBaseMenu, authorityId string) (err error) {
+	var auth model.SysAuthority
+	auth.AuthorityId = authorityId
+	auth.SysBaseMenus = menus
+	err = SetMenuAuthority(&auth)
+	return err
+}
+
+//@function: GetMenuAuthority
+//@description: 查看当前角色树
+//@param: info *request.GetAuthorityId
+//@return: err error, menus []model.SysMenu
+
+func GetMenuAuthority(info *request.GetAuthorityId) (err error, menus []model.SysMenu) {
+	err = global.SdDB.Where("authority_id = ? ", info.AuthorityId).Order("sort").Find(&menus).Error
 	return err, menus
 }

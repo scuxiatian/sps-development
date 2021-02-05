@@ -28,10 +28,10 @@
   </a-layout>
 </template>
 
-<script>
-import Aside from './components/aside'
-import Header from './components/header'
-import History from './components/history'
+<script lang="ts">
+import Aside from './components/aside/index.vue'
+import Header from './components/header/index.vue'
+import History from './components/history/index.vue'
 import { reactive, toRefs, computed } from 'vue'
 import { useRoute } from 'vue-router'
 
@@ -76,6 +76,7 @@ export default {
   .main-content {
     height: calc(100vh - 130px);
     overflow: auto;
+    padding: 15px;
     margin: 15px;
     background: @white-bg;
   }

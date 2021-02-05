@@ -24,9 +24,17 @@ export default function (listApi: Function) {
     getTableData()
   }
 
+  const handleTableChange = (page = state.page, pageSize = state.pageSize, searchInfo = {}) => {
+    state.page = page
+    state.pageSize = pageSize
+    state.searchInfo = searchInfo
+    getTableData()
+  }
+
   return {
     ...toRefs(state),
     handleSizeChange,
+    handleTableChange,
     getTableData
   }
 }

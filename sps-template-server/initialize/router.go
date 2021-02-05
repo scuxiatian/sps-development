@@ -23,9 +23,11 @@ func Routers() *gin.Engine {
 	PrivateGroup := Router.Group("")
 	PrivateGroup.Use(middleware.JWTAuth())
 	{
-		router.InitUserRouter(PrivateGroup)
-		router.InitMenuRouter(PrivateGroup)
-		router.InitJwtRouter(PrivateGroup)
+		router.InitUserRouter(PrivateGroup)			// 注册用户路由
+		router.InitMenuRouter(PrivateGroup)			// 注册menu路由
+		router.InitJwtRouter(PrivateGroup)			// jwt相关路由
+		router.InitAuthorityRouter(PrivateGroup)	// 注册角色路由
+		router.InitApiRouter(PrivateGroup)			// 注册功能api路由
 	}
 	global.SdLog.Info("router register success")
 	return Router

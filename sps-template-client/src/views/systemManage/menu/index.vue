@@ -33,7 +33,9 @@
     <a-form
       ref="menuForm"
       :model="formModel"
-      :rules="rules">
+      :rules="rules"
+      :labelCol="{ span: 8 }"
+      :wrapperCol="{ span: 16 }">
       <a-row>
         <a-col :span="8">
           <a-form-item label="菜单Name" name="name">
@@ -82,7 +84,7 @@
         </a-col>
         <a-col :span="8">
           <a-form-item label="图标" name="meta.icon">
-            <a-select class="icon-select" v-model:value="formModel.meta.icon">
+            <a-select class="icon-select" v-model:value="formModel.meta.icon" filterOption>
               <a-select-option
                 v-for="icon of icons"
                 :key="icon"
@@ -281,7 +283,7 @@ export default {
     // 删除菜单
     const deleteMenu = async (id) => {
       console.log(id)
-      const res = await deleteBaseMenu(id)
+      const res = await deleteBaseMenu({ id })
       if (res.code === 0) {
         ctx.$success('删除成功')
       }

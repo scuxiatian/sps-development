@@ -1,5 +1,6 @@
 import { jsonInBlacklist } from '@/api/jwt'
-import { login, UserLogin } from '@/api/user'
+import { login } from '@/api/user'
+import { LoginParams } from '@/api/model/user'
 import router from '@/router'
 import { ResponseData } from '@/utils/request'
 // import router from '@/router'
@@ -43,7 +44,7 @@ const mutations = {
 }
 
 const actions = {
-  async Login ({ commit }: any, loginInfo: UserLogin) {
+  async Login ({ commit }: any, loginInfo: LoginParams) {
     const res: ResponseData = await login(loginInfo)
     if (res.code === 0) {
       commit('SET_USER_INFO', res.data.user)

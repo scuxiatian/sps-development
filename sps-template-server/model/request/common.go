@@ -11,4 +11,9 @@ type GetById struct {
 	Id float64 `json:"id" form:"id"`
 }
 
+// Get role by id structure
+type GetAuthorityId struct {
+	AuthorityId string
+}
+
 type Empty struct {}

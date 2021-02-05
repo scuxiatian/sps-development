@@ -20,7 +20,10 @@ import {
   Tabs,
   Table,
   Modal,
-  Popconfirm
+  Popconfirm,
+  Drawer,
+  Tree,
+  Tag
 } from 'ant-design-vue'
 // import 'ant-design-vue/dist/antd.css'
 
@@ -46,7 +49,10 @@ const components = [
   Tabs,
   Table,
   Modal,
-  Popconfirm
+  Popconfirm,
+  Drawer,
+  Tree,
+  Tag
 ]
 
 export default (app: any) => {

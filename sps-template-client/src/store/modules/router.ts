@@ -1,23 +1,6 @@
 import { asyncMenu } from '@/api/menu'
 import { asyncRouterHandle } from '@/utils/asyncRouter'
-
-interface Meta {
-  title: string;
-  keepAlive?: boolean;
-  defaultMenu?: boolean;
-  icon?: string;
-  hidden?: boolean;
-}
-
-export interface Router {
-  path?: string;
-  name: string;
-  component?: any;
-  meta: Meta;
-  children?: Array<Router>;
-  hidden?: boolean;
-  menuId?: string;
-}
+import { MenuParams } from '@/api/model/menu'
 
 interface RouterShow {
   label: string;
@@ -25,7 +8,7 @@ interface RouterShow {
 }
 
 const routerList: Array<RouterShow> = []
-const formatRouter = (routes: Array<Router>) => {
+const formatRouter = (routes: Array<MenuParams>) => {
   routes && routes.map(item => {
     if ((!item.children || item.children.every(ch => ch.hidden)) && item.name !== '404') {
       routerList.push({
@@ -41,7 +24,7 @@ const formatRouter = (routes: Array<Router>) => {
 }
 
 interface State {
-  asyncRouters: Array<Router>;
+  asyncRouters: Array<MenuParams>;
   routerList: Array<RouterShow>;
 }
 
@@ -54,14 +37,14 @@ const mutations = {
   setRouterList (state: State, routerList: Array<RouterShow>) {
     state.routerList = routerList
   },
-  setAsyncRouter (state: State, asyncRouters: Array<Router>) {
+  setAsyncRouter (state: State, asyncRouters: Array<MenuParams>) {
     state.asyncRouters = asyncRouters
   }
 }
 
 const actions = {
   async SetAsyncRouter ({ commit }: any) {
-    const baseRouter: Array<Router> = [{
+    const baseRouter: Array<MenuParams> = [{
       path: '/layout',
       name: 'layout',
       component: 'layout/index.vue',

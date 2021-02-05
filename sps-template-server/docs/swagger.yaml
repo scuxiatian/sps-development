@@ -1,5 +1,22 @@
 basePath: /
 definitions:
+  model.SysApi:
+    properties:
+      apiGroup:
+        type: string
+      createdAt:
+        type: string
+      description:
+        type: string
+      id:
+        type: integer
+      method:
+        type: string
+      path:
+        type: string
+      updatedAt:
+        type: string
+    type: object
   model.SysAuthority:
     properties:
       authorityId:
@@ -85,7 +102,21 @@ definitions:
       value:
         type: string
     type: object
+  request.AddMenuAuthorityInfo:
+    properties:
+      authorityId:
+        type: string
+      menus:
+        items:
+          $ref: '#/definitions/model.SysBaseMenu'
+        type: array
+    type: object
   request.Empty:
+    type: object
+  request.GetAuthorityId:
+    properties:
+      authorityId:
+        type: string
     type: object
   request.GetById:
     properties:
@@ -123,12 +154,260 @@ definitions:
       userName:
         type: string
     type: object
+  request.SearchApiParams:
+    properties:
+      apiGroup:
+        type: string
+      createdAt:
+        type: string
+      desc:
+        type: boolean
+      description:
+        type: string
+      id:
+        type: integer
+      method:
+        type: string
+      orderKey:
+        type: string
+      page:
+        type: integer
+      pageSize:
+        type: integer
+      path:
+        type: string
+      updatedAt:
+        type: string
+    type: object
 info:
   contact: {}
   description: This is a sample Server pets
   title: Swagger Example API
   version: 0.0.1
 paths:
+  /api/createApi:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: api路径, api中文描述, api组, 方法
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.SysApi'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"创建成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 创建基础api
+      tags:
+      - SysApi
+  /api/deleteApi:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: ID
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.SysApi'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 删除api
+      tags:
+      - SysApi
+  /api/getAllApis:
+    post:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 获取所有的Api 不分页
+      tags:
+      - SysApi
+  /api/getApiById:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 根据id获取api
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.GetById'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 根据id获取api
+      tags:
+      - SysApi
+  /api/getApiList:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 分页获取API列表
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.SearchApiParams'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 分页获取API列表
+      tags:
+      - SysApi
+  /api/updateApi:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: api路径, api中文描述, api组, 方法
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.SysApi'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"修改成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 创建基础api
+      tags:
+      - SysApi
+  /authority/createAuthority:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 权限id, 权限名, 父角色id
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.SysAuthority'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"创建成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 创建角色
+      tags:
+      - Authority
+  /authority/deleteAuthority:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 删除角色
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.SysAuthority'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 删除角色
+      tags:
+      - Authority
+  /authority/getAuthorityList:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 页码, 每页大小
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.PageInfo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 分页获取角色列表
+      tags:
+      - Authority
+  /authority/updateAuthority:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 权限id, 权限名, 父角色id
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.SysAuthority'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"更新成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 更新角色信息
+      tags:
+      - Authority
   /base/captcha:
     post:
       consumes:
@@ -180,6 +459,29 @@ paths:
       summary: jwt加入黑名单
       tags:
       - Jwt
+  /menu/GetMenuAuthority:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 角色ID
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.GetAuthorityId'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 获取指定角色menu
+      tags:
+      - AuthorityMenu
   /menu/addBaseMenu:
     post:
       consumes:
@@ -203,6 +505,29 @@ paths:
       summary: 新增菜单
       tags:
       - Menu
+  /menu/addMenuAuthority:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 角色ID
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.AddMenuAuthorityInfo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"添加成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 增加menu和角色关联关系
+      tags:
+      - AuthorityMenu
   /menu/deleteBaseMenu:
     post:
       consumes:
@@ -249,6 +574,27 @@ paths:
       summary: 根据id获取菜单
       tags:
       - Menu
+  /menu/getBaseMenuTree:
+    post:
+      parameters:
+      - description: 空
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.Empty'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 获取用户动态路由
+      tags:
+      - AuthorityMenu
   /menu/getMenu:
     post:
       parameters:

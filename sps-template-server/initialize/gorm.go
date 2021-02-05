@@ -20,6 +20,7 @@ func MysqlTables(db *gorm.DB)  {
 		model.SysAuthority{},
 		model.SysBaseMenu{},
 		model.SysBaseMenuParameter{},
+		model.SysApi{},
 		model.JwtBlacklist{})
 	if err != nil {
 		global.SdLog.Error("register table failed", zap.Any("err", err))
@@ -42,6 +43,7 @@ func initMysqlTables(db *gorm.DB)  {
 	//datas.InitSysBaseMenus(db)
 	//datas.InitAuthorityMenu(db)
 	//datas.InitSysAuthorityMenus(db)
+	//datas.InitSysApi(db)
 }
 
 //@function: GormMysql

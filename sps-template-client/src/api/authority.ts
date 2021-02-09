@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 import { PageInfoParams } from './model/common'
-import { AuthorityParams } from './model/authority'
+import type { AuthorityParams, CopyAuthorityParams } from './model/authority'
 
 // @Router /authority/getAuthorityList [post]
 export const getAuthorityList = (data: PageInfoParams) => {
@@ -37,6 +37,22 @@ export const updateAuthority = (data: AuthorityParams) => {
   return request({
     url: '/authority/updateAuthority',
     method: 'put',
+    data
+  })
+}
+
+// @Tags authority
+// @Summary 拷贝角色
+// @Security ApiKeyAuth
+// @accept application/json
+// @Produce application/json
+// @Param data body api.CreateAuthorityPatams true "拷贝角色"
+// @Success 200 {string} json "{"success":true,"data":{},"msg":"拷贝成功"}"
+// @Router /authority/copyAuthority [post]
+export const copyAuthority = (data: CopyAuthorityParams) => {
+  return request({
+    url: '/authority/copyAuthority',
+    method: 'post',
     data
   })
 }

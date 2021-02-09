@@ -106,3 +106,30 @@ func GetAuthorityList(c *gin.Context) {
 		}, "获取成功", c)
 	}
 }
+
+// @Tags Authority
+// @Summary 拷贝角色
+// @Security ApiKeyAuth
+// @accept application/json
+// @Produce application/json
+// @Param data body response.SysAuthorityCopyResponse true "旧角色id, 新权限id, 新权限名, 新父角色id"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"拷贝成功"}"
+// @Router /authority/copyAuthority [post]
+func CopyAuthority(c *gin.Context) {
+	var copyInfo response.SysAuthorityCopyResponse
+	_ = c.ShouldBindJSON(&copyInfo)
+	if err := utils.Verify(copyInfo, utils.OldAuthorityVerify); err != nil {
+		response.FailWithMessage(err.Error(), c)
+		return
+	}
+	if err := utils.Verify(copyInfo.Authority, utils.AuthorityVerify); err != nil {
+		response.FailWithMessage(err.Error(), c)
+		return
+	}
+	if err, authBack := service.CopyAuthority(copyInfo); err != nil {
+		global.SdLog.Error("拷贝失败!", zap.Any("err", err))
+		response.FailWithMessage("拷贝失败" + err.Error(), c)
+	} else {
+		response.OkWithDetailed(response.SysAuthorityCopyResponse{Authority: authBack}, "拷贝成功", c)
+	}
+}

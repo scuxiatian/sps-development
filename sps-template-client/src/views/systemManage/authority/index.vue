@@ -13,14 +13,14 @@
     <template #action="{ record }">
       <a-button type="primary" @click="openDrawer(record)"><LockOutlined />设置权限</a-button>
       <a-button class="table-button" @click="addAuthority(record.authorityId)"><PlusCircleOutlined />新建子角色</a-button>
-      <a-button class="table-button" type="primary"><CopyOutlined />拷贝</a-button>
+      <a-button class="table-button" type="primary" @click="copyAuth(record)"><CopyOutlined />拷贝</a-button>
       <a-button class="table-button" @click="editAuthority(record)"><EditOutlined />编辑</a-button>
       <a-popconfirm title="此操作将永久删除该角色, 是否继续?" @confirm="deleteAuth(record)">
         <a-button class="table-button" type="danger"><DeleteOutlined />删除</a-button>
       </a-popconfirm>
     </template>
   </a-table>
-  <!-- 新增 / 编辑角色弹窗 -->
+  <!-- 新增 / 编辑 / 复制角色弹窗 -->
   <a-modal
     v-model:visible="dialogVisible"
     :title="dialogTitle"
@@ -56,7 +56,9 @@
       <a-tab-pane key="menu" tab="角色菜单">
         <MenuConfig :record="actionRecord" />
       </a-tab-pane>
-      <a-tab-pane key="api" tab="角色api"></a-tab-pane>
+      <a-tab-pane key="api" tab="角色api">
+        <ApiConfig :record="actionRecord" />
+      </a-tab-pane>
       <a-tab-pane key="resource" tab="资源权限"></a-tab-pane>
     </a-tabs>
   </a-drawer>
@@ -64,14 +66,16 @@
 
 <script>
 import { reactive, toRefs, ref, getCurrentInstance } from 'vue'
-import { getAuthorityList, createAuthority, updateAuthority, deleteAuthority } from '@/api/authority'
+import { getAuthorityList, createAuthority, updateAuthority, copyAuthority, deleteAuthority } from '@/api/authority'
 import useInfoList from '@/mixins/infoList'
 import MenuConfig from './components/menuConfig'
+import ApiConfig from './components/apiConfig'
 
 export default {
   name: 'AuthorityMenu',
   components: {
-    MenuConfig
+    MenuConfig,
+    ApiConfig
   },
   setup () {
     const { ctx } = getCurrentInstance()
@@ -85,6 +89,7 @@ export default {
       dialogTitle: '',
       dialogType: '',
       formModel: {},
+      copyForm: {},
       rules: {
         authorityId: [
           { required: true, message: '请输入角色ID', trigger: 'blur' },
@@ -179,6 +184,16 @@ export default {
       state.dialogVisible = true
     }
 
+    // 拷贝角色
+    const copyAuth = (record) => {
+      setOptions()
+      state.dialogTitle = '拷贝角色'
+      state.dialogType = 'copy'
+      state.formModel = { ...record }
+      state.copyForm = record
+      state.dialogVisible = true
+    }
+
     // 删除角色
     const deleteAuth = async (record) => {
       const res = await deleteAuthority(record)
@@ -223,6 +238,17 @@ export default {
             }
             break
           }
+          case 'copy' : {
+            const data = {
+              authority: { ...state.formModel },
+              oldAuthorityId: state.copyForm.authorityId
+            }
+            const res = await copyAuthority(data)
+            if (res.code === 0) {
+              ctx.$success('复制成功!')
+              getTableData()
+            }
+          }
         }
       } catch (err) {
         console.log(err)
@@ -235,6 +261,7 @@ export default {
       tableData,
       addAuthority,
       editAuthority,
+      copyAuth,
       deleteAuth,
       openDrawer,
       okDialog

@@ -18,11 +18,7 @@
   </div>
   <div>
     <!-- 用户头像 -->
-    <a-avatar>
-      <template #icon>
-        <UserOutlined />
-      </template>
-    </a-avatar>
+    <a-avatar :src="userInfo.headerImg" />
     <!-- 下拉菜单 -->
     <a-dropdown class="user-dropdown">
       <span @click="e => e.preventDefault()">{{ userInfo.nickName }}<DownOutlined /></span>
@@ -39,9 +35,13 @@
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 import { computed } from 'vue'
+import CustomPic from '@/components/customPic'
 
 export default {
   name: 'LayoutHeader',
+  components: {
+    CustomPic
+  },
   props: {
     collapsed: {
       type: Boolean,

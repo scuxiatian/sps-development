@@ -12,7 +12,6 @@ var store = base64Captcha.DefaultMemStore
 
 // @Tags Base
 // @Summary 生成验证码
-// @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"验证码获取成功"}"

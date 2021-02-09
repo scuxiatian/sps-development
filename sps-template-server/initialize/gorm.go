@@ -15,7 +15,11 @@ import (
 //@param: db *gorm.DB
 
 func MysqlTables(db *gorm.DB)  {
-	err := db.AutoMigrate(
+	var err error
+	if !db.Migrator().HasTable("casbin_rule") {
+		err = db.Migrator().CreateTable(&model.CasbinRule{})
+	}
+	err = db.AutoMigrate(
 		model.SysUser{},
 		model.SysAuthority{},
 		model.SysBaseMenu{},
@@ -44,6 +48,7 @@ func initMysqlTables(db *gorm.DB)  {
 	//datas.InitAuthorityMenu(db)
 	//datas.InitSysAuthorityMenus(db)
 	//datas.InitSysApi(db)
+	//datas.InitCasbinModel(db)
 }
 
 //@function: GormMysql

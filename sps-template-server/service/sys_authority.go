@@ -45,6 +45,12 @@ func CopyAuthority(copyInfo response.SysAuthorityCopyResponse) (err error, autho
 	copyInfo.Authority.SysBaseMenus = baseMenu
 	err = global.SdDB.Create(&copyInfo.Authority).Error
 
+	paths := GetPolicyPathByAuthorityId(copyInfo.OldAuthorityId)
+	err = UpdateCasbin(copyInfo.Authority.AuthorityId, paths)
+	if err != nil {
+		_ = DeleteAuthority(&copyInfo.Authority)
+	}
+
 	return err, copyInfo.Authority
 }
 
@@ -77,6 +83,7 @@ func DeleteAuthority(auth *model.SysAuthority) (err error) {
 	} else {
 		err = db.Error
 	}
+	ClearCasbin(0, auth.AuthorityId)
 	return err
 }
 

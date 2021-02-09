@@ -103,7 +103,12 @@ func UpdateApi(api model.SysApi) (err error) {
 	if err != nil {
 		return err
 	} else {
-		err = global.SdDB.Save(&api).Error
+		err = UpdateCasbinApi(oldA.Path, api.Path, oldA.Method, api.Method)
+		if err != nil {
+			return err
+		} else {
+			err = global.SdDB.Save(&api).Error
+		}
 	}
 	return err
 }
@@ -115,5 +120,6 @@ func UpdateApi(api model.SysApi) (err error) {
 
 func DeleteApi(api model.SysApi) (err error) {
 	err = global.SdDB.Delete(&api).Error
+	ClearCasbin(1, api.Path, api.Method)
 	return err
 }

@@ -201,8 +201,10 @@ export default {
     // 编辑Api
     const editApi = async (record) => {
       const res = await getApiById({ id: record.ID })
-      state.formModel = res.data.api
-      openDialog('edit')
+      if (res.code === 0) {
+        state.formModel = res.data.api
+        openDialog('edit')
+      }
     }
 
     // 删除Api

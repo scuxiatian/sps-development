@@ -60,13 +60,17 @@ export default {
 
     // 关联角色菜单
     const relation = async () => {
-      if (!state.needConfirm) return
+      if (!state.needConfirm) {
+        ctx.$warning('未发生更改')
+        return
+      }
       const res = await addMenuAuthority({
         menus: state.checkedNodes,
         authorityId: props.record.authorityId
       })
       if (res.code === 0) {
         ctx.$success('菜单设置成功!')
+        state.needConfirm = false
       }
     }
 

@@ -3,3 +3,8 @@ export interface AuthorityParams {
   authorityName: string;
   parentId: string;
 }
+
+export interface CopyAuthorityParams {
+  authority: AuthorityParams;
+  oldAuthorityId: string;
+}

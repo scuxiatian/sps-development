@@ -45,3 +45,7 @@ captcha:
 # casbin 配置信息
 casbin:
   model-path: './resource/rbac_model.conf'
+
+# 本地上传配置
+local:
+  path: 'uploads/file'

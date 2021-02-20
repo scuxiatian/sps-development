@@ -17,6 +17,9 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-var-requires': 'off',
     'no-inner-declarations': 'off',
-    'no-tabs': 'off'
+    'no-tabs': 'off',
+    'no-unused-expressions': 'off',
+    'no-new-func': 'off',
+    'no-prototype-builtins': 'off'
   }
 }

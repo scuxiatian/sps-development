@@ -17,9 +17,9 @@ request.interceptors.request.use(
   config => {
     const token = store.getters['user/token']
     const user = store.getters['user/userInfo']
-    config.data = JSON.stringify(config.data)
+    // config.data = JSON.stringify(config.data)
     config.headers = {
-      'Content-Type': 'application/json',
+      // 'Content-Type': 'multipart/form-data',
       'x-token': token,
       'x-user-id': user.ID
     }

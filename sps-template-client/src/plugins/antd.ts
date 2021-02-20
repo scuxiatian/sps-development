@@ -23,7 +23,10 @@ import {
   Popconfirm,
   Drawer,
   Tree,
-  Tag
+  Tag,
+  Upload,
+  Tooltip,
+  Collapse
 } from 'ant-design-vue'
 // import 'ant-design-vue/dist/antd.css'
 
@@ -52,7 +55,10 @@ const components = [
   Popconfirm,
   Drawer,
   Tree,
-  Tag
+  Tag,
+  Upload,
+  Tooltip,
+  Collapse
 ]
 
 export default (app: any) => {

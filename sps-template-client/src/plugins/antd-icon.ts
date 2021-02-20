@@ -22,7 +22,12 @@ import {
   CopyOutlined,
   SaveOutlined,
   LaptopOutlined,
-  SearchOutlined
+  SearchOutlined,
+  BookOutlined,
+  UploadOutlined,
+  ApartmentOutlined,
+  UndoOutlined,
+  RedoOutlined
 } from '@ant-design/icons-vue'
 
 export const iconComponents = [
@@ -49,7 +54,12 @@ export const iconComponents = [
   CopyOutlined,
   SaveOutlined,
   LaptopOutlined,
-  SearchOutlined
+  SearchOutlined,
+  BookOutlined,
+  UploadOutlined,
+  ApartmentOutlined,
+  UndoOutlined,
+  RedoOutlined
 ]
 
 const antdIcon = {

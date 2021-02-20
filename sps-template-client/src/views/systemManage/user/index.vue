@@ -79,8 +79,8 @@
           <a-input v-model:value="formModel.nickName"></a-input>
         </a-form-item>
         <a-form-item label="头像" name="headerImg">
-          <div style="display:inline-block">
-            <img class="header-img-box" v-if="formModel.headerImg" :src="formModel.headerImg" />
+          <div style="display:inline-block" @click="openHeaderChange">
+            <img class="header-img-box" v-if="formModel.headerImg" :src="convertPath(formModel.headerImg)" />
             <div v-else class="header-img-box">从媒体库选择</div>
           </div>
         </a-form-item>
@@ -94,6 +94,7 @@
         </a-form-item>
       </a-form>
     </a-modal>
+    <ChooseImg ref="chooseImg" :target="formModel" targetKey="headerImg" />
   </div>
 </template>
 
@@ -103,11 +104,14 @@ import { getAuthorityList } from '@/api/authority'
 import useInfoList from '@/mixins/infoList'
 import { reactive, toRefs, getCurrentInstance, ref, unref } from 'vue'
 import CustomPic from '@/components/customPic'
+import ChooseImg from '@/components/chooseImg'
+import { convertPath } from '@/utils/download'
 
 export default {
   name: 'UserManage',
   components: {
-    CustomPic
+    CustomPic,
+    ChooseImg
   },
   setup () {
     const { ctx } = getCurrentInstance()
@@ -209,6 +213,13 @@ export default {
       state.dialogVisible = true
     }
 
+    // 打开图片选择抽屉
+    const chooseImg = ref(null)
+    const openHeaderChange = () => {
+      const drawer = unref(chooseImg)
+      drawer.openDrawer()
+    }
+
     // 提交表单
     const okDialog = async () => {
       const form = unref(userForm)
@@ -242,6 +253,9 @@ export default {
       changeAuthority,
       initForm,
       addUser,
+      convertPath,
+      chooseImg,
+      openHeaderChange,
       okDialog,
       deleteUserRecord
     }

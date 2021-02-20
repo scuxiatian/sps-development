@@ -25,7 +25,8 @@ func MysqlTables(db *gorm.DB)  {
 		model.SysBaseMenu{},
 		model.SysBaseMenuParameter{},
 		model.SysApi{},
-		model.JwtBlacklist{})
+		model.JwtBlacklist{},
+		model.FileUploadAndDownload{})
 	if err != nil {
 		global.SdLog.Error("register table failed", zap.Any("err", err))
 		os.Exit(0)

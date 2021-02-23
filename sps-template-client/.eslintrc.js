@@ -20,6 +20,8 @@ module.exports = {
     'no-tabs': 'off',
     'no-unused-expressions': 'off',
     'no-new-func': 'off',
-    'no-prototype-builtins': 'off'
+    'no-prototype-builtins': 'off',
+    '@typescript-eslint/no-this-alias': 'off',
+    '@typescript-eslint/no-empty-function': 'off'
   }
 }

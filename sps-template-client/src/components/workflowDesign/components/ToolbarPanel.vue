@@ -1,15 +1,18 @@
 <template>
   <div class="toolbar">
-    <a-tooltip
+    <template
       v-for="action of actionList"
-      :key="action.command"
-      :title="action.title">
-      <span class="command">
-        <span>
-          <component :is="action.icon"></component>
+      :key="action.command">
+      <a-tooltip
+        :title="action.title">
+        <span class="command" :data-command="action.command">
+          <span>
+            <component :is="action.icon"></component>
+          </span>
         </span>
-      </span>
-    </a-tooltip>
+      </a-tooltip>
+      <span v-if="action.separator" class="separator" />
+    </template>
   </div>
 </template>
 
@@ -19,7 +22,16 @@ export default {
   setup () {
     const actionList = [
       { icon: 'UndoOutlined', command: 'undo', title: '撤销' },
-      { icon: 'RedoOutlined', command: 'redo', title: '重复' }
+      { icon: 'RedoOutlined', command: 'redo', title: '重做', separator: true },
+      { icon: 'CopyOutlined', command: 'copy', title: '复制' },
+      { icon: 'SnippetsOutlined', command: 'paste', title: '粘贴' },
+      { icon: 'DeleteOutlined', command: 'delete', title: '删除', separator: true },
+      { icon: 'ZoomInOutlined', command: 'zoomIn', title: '放大' },
+      { icon: 'ZoomOutOutlined', command: 'zoomOut', title: '缩小' },
+      { icon: 'ExpandOutlined', command: 'resetZoom', title: '实际大小' },
+      { icon: 'ScanOutlined', command: 'autoFit', title: '适应屏幕', separator: true },
+      { icon: 'VerticalAlignTopOutlined', command: 'toFront', title: '移到上一层' },
+      { icon: 'VerticalAlignBottomOutlined', command: 'toBack', title: '移到下一层' }
     ]
 
     return {
@@ -56,6 +68,10 @@ export default {
       border: 1px solid #E9E9E9;
       cursor: pointer;
     }
+  }
+  .separator {
+    margin: 4px;
+    border-left: 1px solid #E9E9E9;
   }
 }
 </style>

@@ -73,6 +73,13 @@ const nodeDefinition: ShapeOptions = {
           width: options.iconStyle.width,
           height: options.iconStyle.height
         }
+      } else if (this.shapeType === 'path') {
+        attrs = {
+          x: options.iconStyle.left,
+          y: options.iconStyle.top,
+          width: options.iconStyle.width,
+          height: options.iconStyle.height
+        }
       }
       group.icon = group.addShape('image', {
         attrs: {
@@ -93,6 +100,14 @@ const nodeDefinition: ShapeOptions = {
         group.showAnchor()
       } else {
         group.clearAnchor()
+      }
+    } else if (name === 'selected') {
+      const rect = group.getChildByIndex(0)
+      const options = this.options as any
+      if (value) {
+        rect.attr('fill', options.stateStyles.selected.fill)
+      } else {
+        rect.attr('fill', options.style.fill)
       }
     } else if (name === 'hover') {
       const rect = group.getChildByIndex(0)

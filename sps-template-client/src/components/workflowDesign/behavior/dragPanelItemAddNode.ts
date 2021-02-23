@@ -2,6 +2,7 @@ import G6, { Graph, IG6GraphEvent, IGroup, IShape } from '@antv/g6/lib'
 import type { Point } from '@antv/g-base/lib'
 import editorStyle from '../util/defaultStyle'
 import { getShapeName } from '../util/clazz'
+import { CommandGraph } from '../plugins/command'
 
 export default function (g6: typeof G6) {
   g6.registerBehavior('dragPanelItemAddNode', {
@@ -71,7 +72,7 @@ export default function (g6: typeof G6) {
     },
     _addNode (p: Point) {
       const _this = this as any
-      const graph = this.graph as Graph
+      const graph = this.graph as CommandGraph
       if (graph.get('addNodeDragging')) {
         const addModel = graph.get('addModel')
         const { clazz = 'userTask' } = addModel
@@ -82,12 +83,22 @@ export default function (g6: typeof G6) {
         const x = p.x
         const y = p.y
 
-        graph.add('node', {
-          ...addModel,
-          x,
-          y,
-          id
+        graph.executeCommand('add', {
+          type: 'node',
+          addModel: {
+            ...addModel,
+            x,
+            y,
+            id
+          }
         })
+
+        // graph.add('node', {
+        //   ...addModel,
+        //   x,
+        //   y,
+        //   id
+        // })
       }
       _this._clearDelegate()
     }

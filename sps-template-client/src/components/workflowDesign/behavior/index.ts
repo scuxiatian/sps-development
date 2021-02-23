@@ -5,6 +5,7 @@ import hoverAnchorActived from './hoverAnchorActived'
 import clickSelected from './clickSelected'
 import dragNode from './dragNode'
 import dragEdge from './dragEdge'
+import itemAlign from './itemAlign'
 
 export default function (g6: typeof G6) {
   dragPanelItemAddNode(g6)
@@ -13,4 +14,5 @@ export default function (g6: typeof G6) {
   clickSelected(g6)
   dragNode(g6)
   dragEdge(g6)
+  itemAlign(g6)
 }

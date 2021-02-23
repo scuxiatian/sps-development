@@ -1,6 +1,7 @@
 import G6, { Graph, ICanvas, IG6GraphEvent, IGroup, IShape, IShapeBase, Item } from '@antv/g6'
 import { Point } from '@antv/g-base/lib'
 import editorStyle from '../util/defaultStyle'
+import { CommandGraph } from '../plugins/command'
 
 export default function (g6: typeof G6) {
   g6.registerBehavior('dragNode', {
@@ -96,9 +97,18 @@ export default function (g6: typeof G6) {
       graph.emit('afternodedrag', shape)
     },
     _updateItem (item: Item, point: Point) {
-      const graph = this.graph as Graph
-      item.updatePosition(point)
-      graph.paint()
+      const graph = this.graph as CommandGraph
+      graph.executeCommand('update', {
+        itemId: item.get('id'),
+        updateModel: point
+      })
+      // const _this = this as any
+      // if (_this.get('updateEdge')) {
+      //   graph.updateItem(item, point)
+      // } else {
+      //   item.updatePosition(point)
+      //   graph.paint()
+      // }
     }
   })
 }

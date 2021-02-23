@@ -1,7 +1,6 @@
 <template>
   <div class="root">
-    <ToolbarPanel />
-    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" style="opacity:1"/>
+    <ToolbarPanel ref="toolbarRef" />
     <div style="display: flex">
       <ItemPanel ref="addItemPanelRef" :height="height" />
       <div
@@ -9,7 +8,12 @@
         class="canvas-panel"
         :style="{
           height: height + 'px',
-          width: isView ? '100%' : '70%' }"></div>
+          width: isView ? '100%' : '70%' }">
+      </div>
+      <DetailPanel
+        ref="detailPanelRef"
+        :model="selectedModel"
+      />
     </div>
   </div>
 </template>
@@ -17,12 +21,15 @@
 <script>
 import ToolbarPanel from './ToolbarPanel'
 import ItemPanel from './ItemPanel'
+import DetailPanel from './DetailPanel'
 import G6 from '@antv/g6/lib'
 import { onMounted, ref, unref } from 'vue'
 import registerShape from '../shape'
 import registerBehavior from '../behavior'
 import AddItemPanel from '../plugins/addItemPanel'
 import CanvasPanel from '../plugins/canvasPanel'
+import Toolbar from '../plugins/toolbar'
+import Command from '../plugins/command'
 
 registerShape(G6)
 registerBehavior(G6)
@@ -31,7 +38,8 @@ export default {
   name: 'WorkflowDesign',
   components: {
     ToolbarPanel,
-    ItemPanel
+    ItemPanel,
+    DetailPanel
   },
   props: {
     isView: {
@@ -51,6 +59,8 @@ export default {
     let graph
     const containerRef = ref(null)
     const addItemPanelRef = ref(null)
+    const toolbarRef = ref(null)
+    const detailPanelRef = ref(null)
     const data = {
       // 点集
       nodes: [],
@@ -60,11 +70,14 @@ export default {
     onMounted(() => {
       const container = unref(containerRef)
       const addItemPanel = unref(addItemPanelRef)
+      const toolbar = unref(toolbarRef)
       let plugins = []
       if (!props.isView) {
+        const cmdPlugin = new Command()
         const addItemPanelPlugin = new AddItemPanel({ container: addItemPanel.$el })
         const canvasPanelPlugin = new CanvasPanel({ container })
-        plugins = [addItemPanelPlugin, canvasPanelPlugin]
+        const toolbarPlugin = new Toolbar({ container: toolbar.$el })
+        plugins = [cmdPlugin, addItemPanelPlugin, canvasPanelPlugin, toolbarPlugin]
       }
       graph = new G6.Graph({
         container,
@@ -75,7 +88,7 @@ export default {
           default: ['drag-canvas', 'click-select'],
           view: [],
           edit: ['drag-canvas', 'click-select', 'dragPanelItemAddNode', 'hoverNodeActived',
-            'hoverAnchorActived', 'clickSelected', 'dragNode', 'dragEdge']
+            'hoverAnchorActived', 'clickSelected', 'dragNode', 'dragEdge', 'itemAlign']
         },
         defaultEdge: {
           type: 'flow-polyline-round'
@@ -91,7 +104,9 @@ export default {
     })
     return {
       containerRef,
-      addItemPanelRef
+      addItemPanelRef,
+      toolbarRef,
+      detailPanelRef
     }
   }
 }

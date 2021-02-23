@@ -2,32 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e0e36172-8750-4ed8-a718-8f386fb0a007" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/api/v1/file_upload_and_download.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/oss.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/file_upload_and_download.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/response/FileResponse.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/router/file_upload_and_download.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/file_upload_and_download.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/upload/local.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/upload/upload.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sps-template-client/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/.eslintrc.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sps-template-client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sps-template-client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/components/customPic/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/components/customPic/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/plugins/antd-icon.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/plugins/antd-icon.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/plugins/antd.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/plugins/antd.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/router/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/utils/request.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/utils/request.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/views/systemManage/user/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/views/systemManage/user/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/components/workflowDesign/behavior/clickSelected.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/components/workflowDesign/behavior/clickSelected.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/components/workflowDesign/behavior/dragNode.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/components/workflowDesign/behavior/dragNode.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/components/workflowDesign/behavior/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/components/workflowDesign/behavior/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/components/workflowDesign/components/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/components/workflowDesign/components/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/components/workflowDesign/shape/edge.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/components/workflowDesign/shape/edge.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/components/workflowDesign/shape/flowNode.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/components/workflowDesign/shape/flowNode.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/components/workflowDesign/shape/node.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/components/workflowDesign/shape/node.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docs.go" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docs.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/swagger.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/swagger.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/swagger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docs/swagger.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/initialize/gorm.go" beforeDir="false" afterPath="$PROJECT_DIR$/initialize/gorm.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/initialize/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/initialize/router.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

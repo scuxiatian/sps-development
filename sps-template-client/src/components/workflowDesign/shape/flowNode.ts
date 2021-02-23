@@ -50,6 +50,54 @@ const taskDefaultOptions = {
   }
 }
 
+const gatewayDefaultOptions = {
+  icon: null,
+  iconStyle: {
+    width: 20,
+    height: 20,
+    left: -10,
+    top: -10
+  },
+  style: {
+    ...editorStyle.nodeStyle,
+    fill: '#E8FEFA',
+    stroke: '#13C2C2',
+    cursor: 'default'
+  },
+  stateStyles: {
+    selected: {
+      fill: '#8CE8DE'
+    },
+    hover: {
+      cursor: editorStyle.cursor.hoverNode
+    }
+  }
+}
+
+const endDefaultOptions = {
+  icon: null,
+  iconStyle: {
+    width: 23,
+    height: 23,
+    left: 16,
+    top: 16
+  },
+  style: {
+    ...editorStyle.nodeStyle,
+    fill: '#EFF7E8',
+    stroke: '#F5222D',
+    cursor: 'default'
+  },
+  stateStyles: {
+    selected: {
+      fill: '#CFD49A'
+    },
+    hover: {
+      cursor: editorStyle.cursor.hoverNode
+    }
+  }
+}
+
 export default function (g6: typeof G6) {
   g6.registerNode('start-node', {
     shapeType: 'circle',
@@ -94,6 +142,34 @@ export default function (g6: typeof G6) {
       ]
     }
   }, 'base-node')
+
+  g6.registerNode('end-node', {
+    shapeType: 'circle',
+    labelPosition: 'bottom',
+    options: deepMix({}, endDefaultOptions, { icon: require('../assets/icons/flow/end.svg') }),
+    getShapeStyle (cfg: ModelConfig) {
+      cfg.size = [55, 55]
+      const width = cfg.size[0]
+      const style = {
+        x: 0,
+        y: 0,
+        r: width / 2,
+        ...endDefaultOptions.style
+      }
+      if (cfg.color) {
+        style.fill = cfg.color
+      }
+      return style
+    },
+    getAnchorPoints () {
+      return [
+        [0.5, 0], // top
+        [0.5, 1], // bottom
+        [0.5, 1] // bottom
+      ]
+    }
+  }, 'base-node')
+
   g6.registerNode('task-node', {
     shapeType: 'rect',
     options: {
@@ -114,6 +190,36 @@ export default function (g6: typeof G6) {
       return style
     }
   }, 'base-node')
+
+  g6.registerNode('gateway-node', {
+    shapeType: 'path',
+    labelPosition: 'bottom',
+    options: {
+      ...gatewayDefaultOptions
+    },
+    getShapeStyle (cfg: ModelConfig) {
+      cfg.size = [55, 55]
+      const width = cfg.size[0]
+      const height = cfg.size[1]
+      const gap = 4
+      const style = {
+        path: [
+          ['M', 0 - gap, 0 - height / 2 + gap],
+          ['Q', 0, 0 - height / 2, gap, 0 - height / 2 + gap],
+          ['L', width / 2 - gap, 0 - gap],
+          ['Q', width / 2, 0, width / 2 - gap, gap],
+          ['L', gap, height / 2 - gap],
+          ['Q', 0, height / 2, 0 - gap, height / 2 - gap],
+          ['L', -width / 2 + gap, gap],
+          ['Q', -width / 2, 0, -width / 2 + gap, 0 - gap],
+          ['Z']
+        ],
+        ...gatewayDefaultOptions.style
+      }
+      return style
+    }
+  }, 'base-node')
+
   g6.registerNode('user-task-node', {
     options: deepMix({}, taskDefaultOptions, {
       icon: require('../assets/icons/flow/icon_user.svg'),
@@ -128,4 +234,16 @@ export default function (g6: typeof G6) {
       }
     })
   }, 'task-node')
+
+  g6.registerNode('exclusive-gateway-node', {
+    options: deepMix({}, gatewayDefaultOptions, { icon: require('../assets/icons/flow/exclusive-gateway.svg') })
+  }, 'gateway-node')
+
+  g6.registerNode('parallel-gateway-node', {
+    options: deepMix({}, gatewayDefaultOptions, { icon: require('../assets/icons/flow/parallel-gateway.svg') })
+  }, 'gateway-node')
+
+  g6.registerNode('inclusive-gateway-node', {
+    options: deepMix({}, gatewayDefaultOptions, { icon: require('../assets/icons/flow/inclusive-gateway.svg') })
+  }, 'gateway-node')
 }

@@ -1,13 +1,13 @@
 import { deepMix } from '@antv/util'
 
 class BasePlugin {
-  private _cfgs: any;
+  protected _cfgs: any;
 
   constructor (cfgs: any) {
     this._cfgs = deepMix(this.getDefaultCfg(), cfgs)
   }
 
-  getDefaultCfg () {
+  getDefaultCfg (): any {
     return { container: null }
   }
 

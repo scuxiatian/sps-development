@@ -27,7 +27,14 @@ import {
   UploadOutlined,
   ApartmentOutlined,
   UndoOutlined,
-  RedoOutlined
+  RedoOutlined,
+  SnippetsOutlined,
+  ZoomInOutlined,
+  ZoomOutOutlined,
+  ExpandOutlined,
+  ScanOutlined,
+  VerticalAlignTopOutlined,
+  VerticalAlignBottomOutlined
 } from '@ant-design/icons-vue'
 
 export const iconComponents = [
@@ -59,7 +66,14 @@ export const iconComponents = [
   UploadOutlined,
   ApartmentOutlined,
   UndoOutlined,
-  RedoOutlined
+  RedoOutlined,
+  SnippetsOutlined,
+  ZoomInOutlined,
+  ZoomOutOutlined,
+  ExpandOutlined,
+  ScanOutlined,
+  VerticalAlignTopOutlined,
+  VerticalAlignBottomOutlined
 ]
 
 const antdIcon = {

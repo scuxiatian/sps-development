@@ -1,5 +1,6 @@
 import G6, { Graph, IG6GraphEvent, IGroup, IShape, Item, Node } from '@antv/g6'
 import Anchor from '../item/anchor'
+import { CommandGraph } from '../plugins/command'
 import { NodeGroup } from '../shape/node'
 import editorStyle from '../util/defaultStyle'
 
@@ -150,7 +151,7 @@ export default function (g6: typeof G6) {
     },
     _addEdge () {
       const origin = this.origin as Origin
-      const graph = this.graph as Graph
+      const graph = this.graph as CommandGraph
       if (origin.targetNode) {
         const timestamp = new Date().getTime()
         const addModel = {
@@ -161,7 +162,11 @@ export default function (g6: typeof G6) {
           sourceAnchor: origin.sourceAnchor,
           targetAnchor: origin.targetAnchor
         }
-        graph.add('edge', addModel)
+        graph.executeCommand('add', {
+          type: 'edge',
+          addModel
+        })
+        // graph.add('edge', addModel)
       }
     },
     _clearAllAnchor () {

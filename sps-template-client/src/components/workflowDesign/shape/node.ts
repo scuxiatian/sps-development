@@ -129,6 +129,15 @@ const nodeDefinition: ShapeOptions = {
       [0.5, 1], // bottom
       [0, 0.5] // left
     ]
+  },
+  afterUpdate (cfg, group) {
+    if (!cfg || !group) return
+    const icon = group.get('group').icon
+    if (cfg.hideIcon && icon && icon.get('visible')) {
+      icon.hide()
+    } else if (!cfg.hideIcon && icon && !icon.get('visible')) {
+      icon.show()
+    }
   }
 }
 

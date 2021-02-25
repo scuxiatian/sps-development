@@ -78,6 +78,7 @@ export default function (g6: typeof G6) {
         const { clazz = 'userTask' } = addModel
         addModel.type = getShapeName(clazz)
         addModel.shape = getShapeName(clazz)
+        addModel.hideIcon = false
         const timestamp = new Date().getTime()
         const id = clazz + timestamp
         const x = p.x

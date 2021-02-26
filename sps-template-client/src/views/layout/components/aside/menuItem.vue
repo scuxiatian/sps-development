@@ -4,11 +4,13 @@
       <component :is="routerInfo.meta.icon"/>
       <span>{{ routerInfo.meta.title }}</span>
     </template>
-    <MenuItem
-      v-for="item in routerInfo.children"
-      :key="item.name"
-      :routerInfo="item"
-    />
+    <template v-for="item in routerInfo.children">
+      <MenuItem
+        v-if="!item.meta.hidden"
+        :key="item.name"
+        :routerInfo="item"
+      />
+    </template>
   </a-sub-menu>
   <a-menu-item
     v-else

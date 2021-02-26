@@ -34,7 +34,20 @@ import {
   ExpandOutlined,
   ScanOutlined,
   VerticalAlignTopOutlined,
-  VerticalAlignBottomOutlined
+  VerticalAlignBottomOutlined,
+  InfoCircleOutlined,
+  FileExcelOutlined,
+  CloudUploadOutlined,
+  ContactsOutlined,
+  ToolOutlined,
+  CodeOutlined,
+  FormOutlined,
+  FileOutlined,
+  HistoryOutlined,
+  CloudOutlined,
+  UnorderedListOutlined,
+  AppstoreAddOutlined,
+  BellOutlined
 } from '@ant-design/icons-vue'
 
 export const iconComponents = [
@@ -73,7 +86,20 @@ export const iconComponents = [
   ExpandOutlined,
   ScanOutlined,
   VerticalAlignTopOutlined,
-  VerticalAlignBottomOutlined
+  VerticalAlignBottomOutlined,
+  InfoCircleOutlined,
+  FileExcelOutlined,
+  CloudUploadOutlined,
+  ContactsOutlined,
+  ToolOutlined,
+  CodeOutlined,
+  FormOutlined,
+  FileOutlined,
+  HistoryOutlined,
+  CloudOutlined,
+  UnorderedListOutlined,
+  AppstoreAddOutlined,
+  BellOutlined
 ]
 
 const antdIcon = {

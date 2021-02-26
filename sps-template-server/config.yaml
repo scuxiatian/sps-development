@@ -2,6 +2,7 @@
 system:
   env: 'public'  # Change to "develop" to skip authentication for development mode
   addr: 8888
+  db-type: 'mysql'
   oss-type: 'local'
   use-multipoint: false
 
@@ -40,3 +41,11 @@ captcha:
   key-long: 6
   img-width: 240
   img-height: 80
+
+# casbin 配置信息
+casbin:
+  model-path: './resource/rbac_model.conf'
+
+# 本地上传配置
+local:
+  path: 'uploads/file'

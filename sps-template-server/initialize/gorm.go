@@ -15,11 +15,18 @@ import (
 //@param: db *gorm.DB
 
 func MysqlTables(db *gorm.DB)  {
-	err := db.AutoMigrate(
+	var err error
+	if !db.Migrator().HasTable("casbin_rule") {
+		err = db.Migrator().CreateTable(&model.CasbinRule{})
+	}
+	err = db.AutoMigrate(
 		model.SysUser{},
 		model.SysAuthority{},
 		model.SysBaseMenu{},
-		model.SysBaseMenuParameter{})
+		model.SysBaseMenuParameter{},
+		model.SysApi{},
+		model.JwtBlacklist{},
+		model.FileUploadAndDownload{})
 	if err != nil {
 		global.SdLog.Error("register table failed", zap.Any("err", err))
 		os.Exit(0)
@@ -41,6 +48,8 @@ func initMysqlTables(db *gorm.DB)  {
 	//datas.InitSysBaseMenus(db)
 	//datas.InitAuthorityMenu(db)
 	//datas.InitSysAuthorityMenus(db)
+	//datas.InitSysApi(db)
+	//datas.InitCasbinModel(db)
 }
 
 //@function: GormMysql

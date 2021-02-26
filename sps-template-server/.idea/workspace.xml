@@ -2,6 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e0e36172-8750-4ed8-a718-8f386fb0a007" name="Default Changelist" comment="">
+<<<<<<< HEAD
+=======
+      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/components/workflowDesign/components/DetailPanel/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/components/workflowDesign/components/DetailPanel/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/components/workflowDesign/components/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/components/workflowDesign/components/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/views/workflow/workflowCreate/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/views/workflow/workflowCreate/index.vue" afterDir="false" />
+>>>>>>> 5577817fcf0a373b53f25f984deb0871e56733ff
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,9 +34,13 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
+    <property name="go.sdk.automatically.set" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="go.vgo" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -67,6 +77,7 @@
     <option name="version" value="1" />
   </component>
   <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.conf" />
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.log" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -85,5 +96,16 @@
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
     <proxy>https://goproxy.io/</proxy>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/service/sys_menu.go</url>
+          <line>14</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

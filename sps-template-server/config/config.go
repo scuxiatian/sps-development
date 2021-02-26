@@ -6,4 +6,7 @@ type Server struct {
 	Zap     Zap     `mapstructure:"zap" json:"zap" yaml:"zap"`
 	JWT     JWT     `mapstructure:"jwt" json:"jwt" yaml:"jwt"`
 	Captcha Captcha `mapstructure:"captcha" json:"captcha" yaml:"captcha"`
+	Casbin  Casbin  `mapstructure:"casbin" json:"casbin" yaml:"casbin"`
+	// oss
+	Local Local `mapstructure:"local" json:"local" yaml:"local"`
 }

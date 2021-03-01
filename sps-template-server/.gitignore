@@ -2,3 +2,5 @@
 /uploads
 # Log files
 *.log
+# idea
+/.idea

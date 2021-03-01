@@ -6,10 +6,12 @@
     mode="inline"
     theme="dark"
     @click="handleMenuClick">
-    <MenuItem
-      v-for="item of asyncRouters[0].children"
-      :key="item.path"
-      :routerInfo="item" />
+    <template v-for="item of asyncRouters[0].children">
+      <MenuItem
+        v-if="!item.meta.hidden"
+        :key="item.path"
+        :routerInfo="item" />
+    </template>
   </a-menu>
 </template>
 

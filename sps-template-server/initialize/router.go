@@ -33,6 +33,7 @@ func Routers() *gin.Engine {
 		router.InitCasbinRouter(PrivateGroup)					// 权限相关路由
 		router.InitFileUploadAndDownloadRouter(PrivateGroup)	// 文件上传下载功能路由
 		router.InitWorkflowProcessRouter(PrivateGroup)       	// 工作流相关接口
+		router.InitSignatureRouter(PrivateGroup)				// 在线签章相关接口
 	}
 	global.SdLog.Info("router register success")
 	return Router

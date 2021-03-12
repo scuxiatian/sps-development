@@ -8,6 +8,7 @@ import (
 	"os"
 	"sps-template-server/global"
 	"sps-template-server/model"
+	"sps-template-server/model/workflow"
 )
 
 //@function: MysqlTables
@@ -26,7 +27,14 @@ func MysqlTables(db *gorm.DB)  {
 		model.SysBaseMenuParameter{},
 		model.SysApi{},
 		model.JwtBlacklist{},
-		model.FileUploadAndDownload{})
+		model.FileUploadAndDownload{},
+		model.WorkflowProcess{},
+		model.WorkflowNode{},
+		model.WorkflowEdge{},
+		model.WorkflowStartPoint{},
+		model.WorkflowEndPoint{},
+		model.WorkflowMove{},
+		workflow.ExaWfLeave{})
 	if err != nil {
 		global.SdLog.Error("register table failed", zap.Any("err", err))
 		os.Exit(0)

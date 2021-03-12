@@ -18,12 +18,16 @@
       <a-button
         size="small"
         style="float: right; margin-top: 6px; margin-right: 6px"
+        :disabled="disabled"
       >
         保存流程
       </a-button>
     </a-popconfirm>
     <WorkflowDesign
       ref="wfdRef"
+      v-if="done"
+      :readOnly="disabled"
+      :data="data"
       :height="590"
       :users="users"
       :authorities="authorities"
@@ -36,6 +40,9 @@ import WorkflowDesign from '@/components/workflowDesign'
 import { getCurrentInstance, reactive, ref, toRefs, unref } from 'vue'
 import { getUserList } from '@/api/user'
 import { getAuthorityList } from '@/api/authority'
+import { createWorkflowProcess, findWorkflowProcess, updateWorkflowProcess } from '@/api/workflowProcess'
+import { useRoute } from 'vue-router'
+import _ from 'lodash'
 
 export default {
   name: 'workflowCreate',
@@ -44,7 +51,12 @@ export default {
   },
   setup () {
     const { ctx } = getCurrentInstance()
+    const route = useRoute()
     const state = reactive({
+      data: {
+        nodes: [],
+        edges: []
+      },
       processModel: {
         id: '',
         name: '',
@@ -55,7 +67,10 @@ export default {
         messageDefs: []
       },
       users: [],
-      authorities: []
+      authorities: [],
+      disabled: false,
+      done: false,
+      type: null
     })
 
     const wfdRef = ref(null)
@@ -83,6 +98,31 @@ export default {
       if (authorityRes.code === 0) {
         fmtAuthority(authorityRes.data.list, state.authorities)
       }
+      if (route.query.id) {
+        const res = await findWorkflowProcess({ id: route.query.id })
+        state.disabled = route.query.type === 'view'
+        if (res.code === 0) {
+          const reworkflowProcess = res.data.reworkflowProcess
+          reworkflowProcess.nodes.map(item => {
+            if (item.assignValue) {
+              const waitUseArr = item.assignValue.substr(1, item.assignValue.length - 2).split(',')
+              if (item.assignType === 'user') {
+                item.assignValue = []
+                waitUseArr.map(i => {
+                  item.assignValue.push(Number(i))
+                })
+              } else {
+                item.assignValue = waitUseArr
+              }
+            }
+          })
+          state.data.nodes = reworkflowProcess.nodes
+          state.data.edges = reworkflowProcess.edges
+          state.processModel = _.omit(reworkflowProcess, ['nodes', 'edges'])
+        }
+        state.type = route.query.type
+      }
+      state.done = true
     }
     initData()
 
@@ -108,8 +148,17 @@ export default {
         ctx.$error('流程id必填，点击空白处填写流程基本信息')
         return
       }
-      console.log(processModel)
-      ctx.$success('创建成功')
+      if (route.query.type === 'edit') {
+        const res = await updateWorkflowProcess(processModel)
+        if (res.code === 0) {
+          ctx.$success('编辑成功')
+        }
+      } else {
+        const res = await createWorkflowProcess(processModel)
+        if (res.code === 0) {
+          ctx.$success('创建成功')
+        }
+      }
     }
 
     return {

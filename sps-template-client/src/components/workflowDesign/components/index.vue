@@ -1,19 +1,20 @@
 <template>
   <div class="root">
-    <ToolbarPanel ref="toolbarRef" />
+    <ToolbarPanel :readOnly="readOnly" ref="toolbarRef" />
     <div style="display: flex">
-      <ItemPanel ref="addItemPanelRef" :height="height" />
+      <ItemPanel v-if="!readOnly" ref="addItemPanelRef" :height="height" />
       <div
         ref="containerRef"
         class="canvas-panel"
         :style="{
           height: height + 'px',
-          width: isView ? '100%' : '70%' }">
+          width: readOnly ? '80%' : '70%' }">
       </div>
       <DetailPanel
         ref="detailPanelRef"
         :model="selectedModel"
         :height="height"
+        :readOnly="readOnly"
         :users="users"
         :authorities="authorities"
         :onChange="(key, val) => onItemCfgChange(key, val)"
@@ -35,6 +36,7 @@ import CanvasPanel from '../plugins/canvasPanel'
 import Toolbar from '../plugins/toolbar'
 import Command from '../plugins/command'
 import { exportImg, exportJSON } from '../util/bpmn'
+import { getShapeName } from '../util/clazz'
 
 registerShape(G6)
 registerBehavior(G6)
@@ -47,13 +49,17 @@ export default {
     DetailPanel
   },
   props: {
-    isView: {
-      type: Boolean,
-      default: false
-    },
     mode: {
       type: String,
       default: 'edit'
+    },
+    data: {
+      type: Object,
+      default: () => ({ nodes: [], edges: [] })
+    },
+    readOnly: {
+      type: Boolean,
+      default: false
     },
     height: {
       type: Number,
@@ -92,18 +98,26 @@ export default {
       processModel: {}
     })
 
-    const data = {
-      // 点集
-      nodes: [],
-      // 边集
-      edges: []
-    }
-
     const init = () => {
       state.processModel = props.propProcessModel
       state.selectedModel = state.processModel
     }
     init()
+
+    const initShape = (data) => {
+      if (data && data.nodes) {
+        return {
+          nodes: data.nodes.map(node => {
+            return {
+              shape: getShapeName(node.clazz),
+              ...node
+            }
+          }),
+          edges: data.edges
+        }
+      }
+      return data
+    }
 
     const initEvents = () => {
       // 节点选中状态变化事件
@@ -147,7 +161,7 @@ export default {
       const addItemPanel = unref(addItemPanelRef)
       const toolbar = unref(toolbarRef)
       let plugins = []
-      if (!props.isView) {
+      if (!props.readOnly) {
         const cmdPlugin = new Command()
         const addItemPanelPlugin = new AddItemPanel({ container: addItemPanel.$el })
         const canvasPanelPlugin = new CanvasPanel({ container })
@@ -160,22 +174,25 @@ export default {
         width: container.offsetWidth,
         height: props.height,
         modes: {
-          default: ['drag-canvas', 'click-select'],
-          view: [],
-          edit: ['drag-canvas', 'click-select', 'dragPanelItemAddNode', 'hoverNodeActived',
+          default: ['drag-canvas', 'clickSelected'],
+          view: ['clickSelected'],
+          edit: ['drag-canvas', 'dragPanelItemAddNode', 'hoverNodeActived',
             'hoverAnchorActived', 'clickSelected', 'dragNode', 'dragEdge', 'itemAlign']
         },
         defaultEdge: {
           type: 'flow-polyline-round'
         }
       })
-      if (props.isView) {
+      if (props.readOnly) {
         graph.setMode('view')
       } else {
         graph.setMode(props.mode)
       }
-      graph.data(data)
+      graph.data(initShape(props.data))
       graph.render()
+      if (props.readOnly && props.data && props.data.nodes) {
+        graph.fitView(5)
+      }
       initEvents()
     })
 

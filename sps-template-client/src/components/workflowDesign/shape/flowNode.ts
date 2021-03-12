@@ -165,7 +165,7 @@ export default function (g6: typeof G6) {
       return [
         [0.5, 0], // top
         [0.5, 1], // bottom
-        [0.5, 1] // bottom
+        [0, 0.5] // left
       ]
     }
   }, 'base-node')

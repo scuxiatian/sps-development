@@ -63,6 +63,29 @@ export default function (g6: typeof G6) {
       }) as IShape
       return shape
     },
+    drawLabel (cfg, group) {
+      const _this = this as any
+      const labelCfg = cfg.labelCfg || {}
+      const labelStyle = _this.getLabelStyle(cfg, labelCfg, group)
+      const label = group.addShape('text', {
+        attrs: labelStyle
+      })
+      const labelBBox = label.getBBox()
+      group.addShape('rect', {
+        className: 'edge-labelRect',
+        attrs: {
+          x: labelBBox.x - editorStyle.edgeLabelRectPadding / 2,
+          y: labelBBox.y - editorStyle.edgeLabelRectPadding / 2,
+          width: labelBBox.width + editorStyle.edgeLabelRectPadding,
+          height: labelBBox.height + editorStyle.edgeLabelRectPadding,
+          fill: '#fff',
+          stroke: '#fff'
+        }
+      })
+      group.toBack()
+      label.toFront()
+      return label
+    },
     getControlPoints (cfg: ModelConfig) {
       if (!cfg.sourceNode) {
         return cfg.controlPoints

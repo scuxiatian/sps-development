@@ -47,7 +47,12 @@ import {
   CloudOutlined,
   UnorderedListOutlined,
   AppstoreAddOutlined,
-  BellOutlined
+  BellOutlined,
+  CaretRightOutlined,
+  RollbackOutlined,
+  CheckOutlined,
+  CloseOutlined,
+  AuditOutlined
 } from '@ant-design/icons-vue'
 
 export const iconComponents = [
@@ -99,7 +104,12 @@ export const iconComponents = [
   CloudOutlined,
   UnorderedListOutlined,
   AppstoreAddOutlined,
-  BellOutlined
+  BellOutlined,
+  CaretRightOutlined,
+  RollbackOutlined,
+  CheckOutlined,
+  CloseOutlined,
+  AuditOutlined
 ]
 
 const antdIcon = {

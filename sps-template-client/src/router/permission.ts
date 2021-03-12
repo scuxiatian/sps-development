@@ -1,13 +1,14 @@
 import router from '@/router'
 import store from '@/store'
+import { RouteLocationNormalized } from 'vue-router'
 
 let asyncRouterFlag = 0
 
 const whiteList = ['login']
 
-router.beforeEach(async (to: any, from, next) => {
+router.beforeEach(async (to: RouteLocationNormalized, _, next) => {
   const token = store.getters['user/token']
-  if (whiteList.indexOf(to.name) > -1) {
+  if (whiteList.indexOf(to.name as string) > -1) {
     if (token) {
       next({ path: '/layout/dashboard' })
     } else {

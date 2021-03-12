@@ -7,11 +7,11 @@
         :title="action.title">
         <span class="command" :data-command="action.command">
           <span>
-            <component :is="action.icon"></component>
+            <component v-if="!readOnly" :is="action.icon"></component>
           </span>
         </span>
       </a-tooltip>
-      <span v-if="action.separator" class="separator" />
+      <span v-if="!readOnly && action.separator" class="separator" />
     </template>
   </div>
 </template>
@@ -19,6 +19,12 @@
 <script>
 export default {
   name: 'ToolbarPanel',
+  props: {
+    readOnly: {
+      type: Boolean,
+      default: false
+    }
+  },
   setup () {
     const actionList = [
       { icon: 'UndoOutlined', command: 'undo', title: '撤销' },

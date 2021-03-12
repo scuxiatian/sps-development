@@ -6,7 +6,7 @@
         <div>流程标识(id)</div>
         <a-input-expand
           style="width: 90%; font-size: 12px"
-          :disabled="readOnly"
+          :disabled="readOnly || !!type"
           placeholder="必填（唯一标识）"
           :value="model.id"
           @valueChange="(value) => onChange('id', value)"
@@ -16,7 +16,6 @@
         :model="model"
         :onChange="onChange"
         :readOnly="readOnly"
-        :iconConfig="false"
       />
       <div class="panel-row">
         <div>流程名称</div>
@@ -54,6 +53,8 @@
 </template>
 
 <script>
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 import DefaultDetail from './DefaultDetail'
 
 export default {
@@ -73,6 +74,17 @@ export default {
     readOnly: {
       type: Boolean,
       default: false
+    }
+  },
+  setup () {
+    const route = useRoute()
+
+    const type = computed(() => {
+      return route.query.type
+    })
+
+    return {
+      type
     }
   }
 }

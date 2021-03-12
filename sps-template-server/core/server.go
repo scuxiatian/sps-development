@@ -10,6 +10,7 @@ import (
 )
 
 func RunServer()  {
+	initialize.InitWorkflowMode()
 	Router := initialize.Routers()
 
 	address := fmt.Sprintf(":%d", global.SdConfig.System.Addr)

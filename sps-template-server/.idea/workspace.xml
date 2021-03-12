@@ -2,10 +2,41 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e0e36172-8750-4ed8-a718-8f386fb0a007" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/components/workflowDesign/components/DetailPanel/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/components/workflowDesign/components/DetailPanel/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/v1/sys_signature.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/v1/sys_workflow.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/constant/workflow.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/initialize/workflow.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/request/sys_workflow.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/sys_signature.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/sys_workflow.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/workflow/leave.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/router/sys_signature.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/router/sys_workflow.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/sys_signature.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/sys_workflow.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/components/workflowDesign/components/DetailPanel/ProcessDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/components/workflowDesign/components/DetailPanel/ProcessDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/components/workflowDesign/components/ToolbarPanel.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/components/workflowDesign/components/ToolbarPanel.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sps-template-client/src/components/workflowDesign/components/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/components/workflowDesign/components/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/components/workflowDesign/shape/edge.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/components/workflowDesign/shape/edge.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/components/workflowDesign/shape/flowNode.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/components/workflowDesign/shape/flowNode.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/plugins/antd-icon.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/plugins/antd-icon.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/plugins/antd.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/plugins/antd.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/router/permission.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/router/permission.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/style/base.less" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/style/base.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/utils/date.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/utils/date.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sps-template-client/src/views/workflow/workflowCreate/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/views/workflow/workflowCreate/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs.go" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docs.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/swagger.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/swagger.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/swagger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docs/swagger.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/initialize/datas/menus.go" beforeDir="false" afterPath="$PROJECT_DIR$/initialize/datas/menus.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/initialize/gorm.go" beforeDir="false" afterPath="$PROJECT_DIR$/initialize/gorm.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/initialize/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/initialize/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/verify.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/verify.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,7 +51,7 @@
       </list>
     </option>
   </component>
-  <component name="GOROOT" path="E:\Go" />
+  <component name="GOROOT" path="D:\Go" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
@@ -41,6 +72,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\xiat\vue-3.0-code\sps-development\sps-template-server\model" />
       <recent name="E:\goProject\sps-template\sps-template-server\model" />
     </key>
   </component>
@@ -93,16 +125,5 @@
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
     <proxy>https://goproxy.io/</proxy>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/service/sys_menu.go</url>
-          <line>14</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

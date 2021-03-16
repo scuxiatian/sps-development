@@ -34,7 +34,8 @@ func MysqlTables(db *gorm.DB)  {
 		model.WorkflowStartPoint{},
 		model.WorkflowEndPoint{},
 		model.WorkflowMove{},
-		workflow.ExaWfLeave{})
+		workflow.ExaWfLeave{},
+		model.SysSignature{})
 	if err != nil {
 		global.SdLog.Error("register table failed", zap.Any("err", err))
 		os.Exit(0)

@@ -16,4 +16,6 @@ var (
 	ChangePasswordVerify   = Rules{"Username": {NotEmpty()}, "Password": {NotEmpty()}, "NewPassword": {NotEmpty()}}
 	SetUserAuthorityVerify = Rules{"UUID": {NotEmpty()}, "AuthorityId": {NotEmpty()}}
 	SignatureVerify		   = Rules{"Name": {NotEmpty()}, "Password": {NotEmpty()}, "Url":{NotEmpty()}}
+	UpdateSignature   	   = Rules{"Name": {NotEmpty()}, "Url":{NotEmpty()}}
+	ChangeSignaturePasswordVerify   = Rules{"Id": {NotEmpty()}, "Password": {NotEmpty()}, "NewPassword": {NotEmpty()}}
 )

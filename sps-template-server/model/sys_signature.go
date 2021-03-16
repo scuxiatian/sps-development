@@ -9,5 +9,6 @@ type SysSignature struct {
 	Url			string		`json:"url" gorm:"comment:签章图片地址"`
 	Description	string		`json:"description" gorm:"comment:签章描述"`
 	IsPublic	bool		`json:"isPublic" gorm:"comment:是否为公章"`
-	Owner		SysUser		`json:"owner" gorm:"<-false" gorm:"comment:所属人(仅私章)"`
+	Owner		SysUser		`json:"owner" gorm:"foreignKey:UUID;references:OwnerId;comment:所属人(仅私章)"`
+	OwnerId		string		`json:"ownerId" gorm:"comment:所属人ID"`
 }

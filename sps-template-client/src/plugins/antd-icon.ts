@@ -52,7 +52,8 @@ import {
   RollbackOutlined,
   CheckOutlined,
   CloseOutlined,
-  AuditOutlined
+  AuditOutlined,
+  FieldTimeOutlined
 } from '@ant-design/icons-vue'
 
 export const iconComponents = [
@@ -109,7 +110,8 @@ export const iconComponents = [
   RollbackOutlined,
   CheckOutlined,
   CloseOutlined,
-  AuditOutlined
+  AuditOutlined,
+  FieldTimeOutlined
 ]
 
 const antdIcon = {

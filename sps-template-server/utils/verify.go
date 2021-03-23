@@ -18,4 +18,7 @@ var (
 	SignatureVerify		   = Rules{"Name": {NotEmpty()}, "Password": {NotEmpty()}, "Url":{NotEmpty()}}
 	UpdateSignature   	   = Rules{"Name": {NotEmpty()}, "Url":{NotEmpty()}}
 	ChangeSignaturePasswordVerify   = Rules{"Id": {NotEmpty()}, "Password": {NotEmpty()}, "NewPassword": {NotEmpty()}}
+	ValidateSignatureVerify = Rules{"Id": {NotEmpty()}, "Password": {NotEmpty()}}
+	UseSignatureVerify = Rules{"SignatureId": {NotEmpty()}}
+	CancelSignatureVerify = Rules{"SignatureRecordID": {NotEmpty()}}
 )

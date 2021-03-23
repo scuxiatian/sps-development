@@ -2,15 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e0e36172-8750-4ed8-a718-8f386fb0a007" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/model/request/sys_signature.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/style/base.less" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/style/base.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/views/signatureManage/publicSignature/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/views/signatureManage/publicSignature/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/response/sys_signature.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sps-template-client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/api/model/signature.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/api/model/signature.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sps-template-client/src/api/signature.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../sps-template-client/src/api/signature.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/v1/sys_signature.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/sys_signature.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/v1/sys_user.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/sys_user.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docs.go" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docs.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/swagger.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/swagger.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/swagger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docs/swagger.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/initialize/gorm.go" beforeDir="false" afterPath="$PROJECT_DIR$/initialize/gorm.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/request/sys_signature.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/request/sys_signature.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/sys_signature.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/sys_signature.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/router/sys_signature.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/sys_signature.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/sys_signature.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/sys_signature.go" afterDir="false" />

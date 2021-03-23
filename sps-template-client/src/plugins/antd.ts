@@ -28,7 +28,8 @@ import {
   Tooltip,
   Collapse,
   DatePicker,
-  Steps
+  Steps,
+  Switch
 } from 'ant-design-vue'
 
 import { registerAntDesignExpand } from '@/components/antDesignExpand'
@@ -63,7 +64,8 @@ const components = [
   Tooltip,
   Collapse,
   DatePicker,
-  Steps
+  Steps,
+  Switch
 ]
 
 export default (app: any) => {

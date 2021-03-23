@@ -35,6 +35,7 @@
       :columns="columns"
       :dataSource="tableData"
       :pagination="{
+        current,
         total,
         showTotal: total => `共 ${total} 条`,
         pageSizeOptions: ['10', '30', '50', '100'],
@@ -130,7 +131,8 @@ export default {
         apiGroup: [{ required: true, message: '请输入组名称', trigger: 'blur' }],
         method: [{ required: true, message: '请选择请求方式', trigger: 'blur' }],
         description: [{ required: true, message: '请输入api介绍', trigger: 'blur' }]
-      }
+      },
+      current: 1
     })
 
     const apiForm = ref(null)
@@ -177,6 +179,7 @@ export default {
         orderKey: toSQLLine(sort.field),
         desc: sort.order === 'descend'
       }
+      state.current = pagination.current
       handleTableChange(pagination.current, pagination.pageSize, {
         ...state.sortInfo,
         ...state.searchInfo
@@ -185,7 +188,8 @@ export default {
 
     // 条件查询
     const searchApi = () => {
-      handleTableChange(1, 10, {
+      state.current = 1
+      handleTableChange(1, undefined, {
         ...state.sortInfo,
         ...state.searchInfo
       })

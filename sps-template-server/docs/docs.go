@@ -1031,7 +1031,7 @@ var doc = `{
                 }
             }
         },
-        "/signature/GetSignatureById": {
+        "/signature/cancelSignature": {
             "post": {
                 "security": [
                     {
@@ -1047,21 +1047,21 @@ var doc = `{
                 "tags": [
                     "SysSignature"
                 ],
-                "summary": "根据id获取签章",
+                "summary": "取消签章",
                 "parameters": [
                     {
-                        "description": "根据id获取签章",
+                        "description": "取消签章",
                         "name": "data",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/request.GetById"
+                            "$ref": "#/definitions/model.SignatureUse"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"success\":true,\"data\":{},\"msg\":\"获取成功\"}",
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"验证成功\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -1180,6 +1180,44 @@ var doc = `{
                 }
             }
         },
+        "/signature/getSignatureById": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "SysSignature"
+                ],
+                "summary": "根据id获取签章",
+                "parameters": [
+                    {
+                        "description": "根据id获取签章",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.GetById"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"获取成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/signature/getSignatureList": {
             "post": {
                 "security": [
@@ -1218,6 +1256,82 @@ var doc = `{
                 }
             }
         },
+        "/signature/getSignatureRecordById": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "SysSignature"
+                ],
+                "summary": "根据id获取签章记录",
+                "parameters": [
+                    {
+                        "description": "根据id获取签章记录",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.GetById"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"获取成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/signature/saveSignaturePosition": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "SysSignature"
+                ],
+                "summary": "保存签章位置",
+                "parameters": [
+                    {
+                        "description": "保存签章位置",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.SignatureRecord"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"验证成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/signature/updateSignature": {
             "put": {
                 "security": [
@@ -1249,6 +1363,82 @@ var doc = `{
                 "responses": {
                     "200": {
                         "description": "{\"success\":true,\"data\":{},\"msg\":\"设置成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/signature/useSignature": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "SysSignature"
+                ],
+                "summary": "使用签章",
+                "parameters": [
+                    {
+                        "description": "使用签章",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.UseSignatureStruct"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"验证成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/signature/validateSignature": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "SysSignature"
+                ],
+                "summary": "验证签章信息",
+                "parameters": [
+                    {
+                        "description": "验证签章信息",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.ValidateSignatureStruct"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"验证成功\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -1845,6 +2035,55 @@ var doc = `{
                 }
             }
         },
+        "model.SignatureRecord": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "signatures": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.SignatureUse"
+                    }
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.SignatureUse": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "signature": {
+                    "$ref": "#/definitions/model.SysSignature"
+                },
+                "signatureId": {
+                    "type": "integer"
+                },
+                "signatureRecordID": {
+                    "type": "integer"
+                },
+                "updatedAt": {
+                    "type": "string"
+                },
+                "x": {
+                    "type": "integer"
+                },
+                "y": {
+                    "type": "integer"
+                }
+            }
+        },
         "model.SysApi": {
             "type": "object",
             "properties": {
@@ -2346,7 +2585,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "id": {
-                    "type": "string"
+                    "type": "number"
                 },
                 "newPassword": {
                     "type": "string"
@@ -2468,6 +2707,28 @@ var doc = `{
                     "type": "string"
                 },
                 "uuid": {
+                    "type": "string"
+                }
+            }
+        },
+        "request.UseSignatureStruct": {
+            "type": "object",
+            "properties": {
+                "recordId": {
+                    "type": "number"
+                },
+                "signatureId": {
+                    "type": "number"
+                }
+            }
+        },
+        "request.ValidateSignatureStruct": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number"
+                },
+                "password": {
                     "type": "string"
                 }
             }

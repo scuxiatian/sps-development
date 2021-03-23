@@ -153,3 +153,143 @@ func DeleteSignature(c *gin.Context)  {
 		response.OkWithMessage("删除成功", c)
 	}
 }
+
+// @Tags SysSignature
+// @Summary 分页获取签章记录列表
+// @Security ApiKeyAuth
+// @accept application/json
+// @Produce application/json
+// @Param data body request.SearchSignatureParams true "分页获取签章记录列表"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"获取成功"}"
+// @Router /signature/getSignatureRecordList [post]
+func GetSignatureRecordList(c *gin.Context)  {
+	var pageInfo request.SearchSignatureParams
+	_ = c.ShouldBindJSON(&pageInfo)
+	if err := utils.Verify(pageInfo, utils.PageInfoVerify); err != nil {
+		response.FailWithMessage(err.Error(), c)
+		return
+	}
+	if err, list, total := service.GetSignatureRecordList(pageInfo); err != nil {
+		global.SdLog.Error("获取失败!", zap.Any("err", err))
+		response.FailWithMessage("获取失败", c)
+	} else {
+		response.OkWithDetailed(response.PageResult{
+			List:     list,
+			Total:    total,
+			Page:     pageInfo.Page,
+			PageSize: pageInfo.PageSize,
+		}, "获取成功", c)
+	}
+}
+
+// @Tags SysSignature
+// @Summary 验证签章信息
+// @Security ApiKeyAuth
+// @accept application/json
+// @Produce application/json
+// @Param data body request.ValidateSignatureStruct true "验证签章信息"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"验证成功"}"
+// @Router /signature/validateSignature [post]
+func ValidateSignature(c *gin.Context) {
+	var info request.ValidateSignatureStruct
+	_ = c.ShouldBindJSON(&info)
+	if err := utils.Verify(info, utils.ValidateSignatureVerify); err != nil {
+		response.FailWithMessage(err.Error(), c)
+		return
+	}
+	if err := service.ValidateSignature(info.Id, info.Password); err != nil {
+		response.FailWithMessage(err.Error(), c)
+	} else {
+		response.OkWithMessage("验证成功", c)
+	}
+}
+
+// @Tags SysSignature
+// @Summary 根据id获取签章记录
+// @Security ApiKeyAuth
+// @accept application/json
+// @Produce application/json
+// @Param data body request.GetById true "根据id获取签章记录"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"获取成功"}"
+// @Router /signature/getSignatureRecordById [post]
+func GetSignatureRecordById(c *gin.Context) {
+	var info request.GetById
+	_ = c.ShouldBindJSON(&info)
+	if err := utils.Verify(info, utils.IdVerify); err != nil {
+		response.FailWithMessage(err.Error(), c)
+		return
+	}
+	err, record := service.GetSignatureRecordById(info.Id)
+	if err != nil {
+		response.FailWithMessage(err.Error(), c)
+	} else {
+		response.OkWithData(record, c)
+	}
+}
+
+// @Tags SysSignature
+// @Summary 使用签章
+// @Security ApiKeyAuth
+// @accept application/json
+// @Produce application/json
+// @Param data body request.UseSignatureStruct true "使用签章"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"验证成功"}"
+// @Router /signature/useSignature [post]
+func UseSignature(c *gin.Context)  {
+	var info request.UseSignatureStruct
+	_ = c.ShouldBindJSON(&info)
+	if err := utils.Verify(info, utils.UseSignatureVerify); err != nil {
+		response.FailWithMessage(err.Error(), c)
+		return
+	}
+	err, record, signature := service.UseSignature(info.RecordId, info.SignatureId, getUserID(c), info.Description)
+	if err != nil {
+		response.FailWithMessage(err.Error(), c)
+	} else {
+		response.OkWithDetailed(response.SignatureRecordResponse{
+			Record:    record,
+			Signature: signature,
+		}, "签章成功", c)
+	}
+}
+
+// @Tags SysSignature
+// @Summary 保存签章位置
+// @Security ApiKeyAuth
+// @accept application/json
+// @Produce application/json
+// @Param data body model.SignatureRecord true "保存签章位置"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"验证成功"}"
+// @Router /signature/saveSignaturePosition [post]
+func SaveSignaturePosition(c *gin.Context)  {
+	var record model.SignatureRecord
+	_ = c.ShouldBindJSON(&record)
+	if err := service.SaveSignaturePosition(record); err != nil {
+		response.FailWithMessage(err.Error(), c)
+	} else {
+		response.OkWithMessage("保存签章位置成功", c)
+	}
+}
+
+// @Tags SysSignature
+// @Summary 取消签章
+// @Security ApiKeyAuth
+// @accept application/json
+// @Produce application/json
+// @Param data body model.SignatureUse true "取消签章"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"验证成功"}"
+// @Router /signature/cancelSignature [post]
+func CancelSignature(c *gin.Context) {
+	var signature model.SignatureUse
+	_ = c.ShouldBindJSON(&signature)
+	if err := utils.Verify(signature, utils.CancelSignatureVerify); err != nil {
+		response.FailWithMessage(err.Error(), c)
+		return
+	}
+	if err, record := service.CancelSignature(signature); err != nil {
+		response.FailWithMessage(err.Error(), c)
+		return
+	} else {
+		response.OkWithData(record, c)
+	}
+}
